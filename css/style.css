@@ -50,6 +50,8 @@ p{max-width:58ch}
 .gate{position:absolute;left:50%;top:50%;width:var(--aw);height:var(--ah);transform:translate(-50%,-50%);border-radius:999px 999px 0 0;overflow:hidden;z-index:2;box-shadow:0 40px 80px -40px rgba(58,45,36,.55);background:var(--sand);animation:openArch 1.5s cubic-bezier(.2,.7,.2,1) both}
 .gate .g-video,.gate .g-photo,.gate .g-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .g-photo{opacity:0}
+.gate::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(40,30,22,.1),rgba(40,30,22,.42));pointer-events:none}
+.w.front{text-shadow:0 2px 34px rgba(40,30,22,.4)}
 .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,30,22,.3),rgba(40,30,22,.6));opacity:0;z-index:3}
 .gate-over{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--cream);opacity:0;padding:1.5rem;gap:1.2rem;pointer-events:none}
 .gate-logo{width:min(250px,60vw)}
@@ -136,7 +138,8 @@ footer p{margin:0 auto;color:var(--taupe)}
   .nav{position:fixed;inset:64px 0 auto 0;flex-direction:column;gap:1.2rem;padding:2rem;background:var(--cream);border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .3s;visibility:hidden}
   .nav.open{transform:none;visibility:visible}
   .stick{--aw:74vw;--ah:70svh}
-  .w{font-size:31vw}
+  .w{font-size:25vw}
+  .w.back{display:none}
   .reveal{height:240svh}
   .badge{width:100px;height:100px;left:calc(50% + var(--aw)/2 - 66px);top:calc(50% + var(--ah)/2 - 70px)}
   .badge img{width:34px}
