@@ -40,22 +40,30 @@ p{max-width:58ch}
 .ph::after{content:attr(data-label);font-family:var(--serif);font-style:italic;color:var(--taupe);font-size:1.2rem;opacity:.8}
 .arch img,.arch video,.g img{width:100%;height:100%;object-fit:cover}
 
-/* Hero: la boîte s'ouvre au scroll */
+/* Hero: le raam s'ouvre au scroll */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .reveal{height:260svh;position:relative}
-.stick{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--cream)}
-.kicker{position:absolute;top:5.2rem;left:0;right:0;text-align:center;font-size:.85rem;letter-spacing:.14em;color:var(--taupe);z-index:3;transition:opacity .3s}
-.word{display:flex;align-items:center;justify-content:center;width:100%;gap:0}
-.w{font-family:var(--serif);font-weight:300;font-size:min(19vw,34svh);line-height:1;color:var(--espresso);letter-spacing:-.02em;flex:none;position:relative;z-index:1;padding-bottom:.08em}
-.gate{flex:none;width:min(30vw,380px);height:68svh;margin:0 -1.6vw;border-radius:999px 999px 0 0;overflow:hidden;position:relative;z-index:2;box-shadow:0 30px 70px -30px rgba(58,45,36,.45);background:var(--sand)}
-.gate>picture,.gate>picture img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
-.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,30,22,.25),rgba(40,30,22,.55));opacity:0}
-.gate-over{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--cream);opacity:0;padding:1.5rem;gap:1.2rem}
+.stick{--aw:min(44vw,520px);--ah:76svh;position:sticky;top:0;height:100svh;overflow:hidden;background:var(--cream)}
+.w{font-family:var(--serif);font-weight:300;font-size:min(24vw,40svh);line-height:1;letter-spacing:-.02em;white-space:nowrap;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+.w.back{color:var(--espresso);z-index:1}
+.w.front{color:var(--cream);z-index:2}
+.gate{position:absolute;left:50%;top:50%;width:var(--aw);height:var(--ah);transform:translate(-50%,-50%);border-radius:999px 999px 0 0;overflow:hidden;z-index:2;box-shadow:0 40px 80px -40px rgba(58,45,36,.55);background:var(--sand);animation:openArch 1.5s cubic-bezier(.2,.7,.2,1) both}
+.gate .g-video,.gate .g-photo,.gate .g-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.g-photo{opacity:0}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,30,22,.3),rgba(40,30,22,.6));opacity:0;z-index:3}
+.gate-over{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--cream);opacity:0;padding:1.5rem;gap:1.2rem;pointer-events:none}
 .gate-logo{width:min(250px,60vw)}
 .gate-over p{font-family:var(--serif);font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.3;margin:0 auto}
 .gate-over .actions{justify-content:center}
-.hint{position:absolute;bottom:1.6rem;left:0;right:0;text-align:center;font-size:.8rem;letter-spacing:.18em;color:var(--taupe)}
-.hint::after{content:"";display:block;width:1px;height:34px;background:var(--taupe);margin:.6rem auto 0;animation:drip 2s ease-in-out infinite;transform-origin:top}
+.badge{position:absolute;z-index:5;width:128px;height:128px;left:calc(50% + var(--aw)/2 - 72px);top:calc(50% + var(--ah)/2 - 100px);border-radius:50%;background:var(--cream);box-shadow:0 12px 30px -12px rgba(58,45,36,.4);display:grid;place-items:center;animation:fadeIn 1s 1.2s backwards}
+.badge svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 28s linear infinite}
+.badge text{font:400 15.5px var(--sans);letter-spacing:.12em;fill:var(--taupe);text-transform:uppercase}
+.badge img{width:44px;height:auto;position:relative}
+.hint{position:absolute;z-index:5;left:clamp(1.2rem,4vw,3rem);bottom:1.4rem;max-width:none;font-size:.78rem;letter-spacing:.18em;color:var(--taupe)}
+.hint::after{content:"";display:block;width:1px;height:34px;background:var(--taupe);margin:.6rem 0 0 .4rem;animation:drip 2s ease-in-out infinite;transform-origin:top}
+@keyframes openArch{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
 @keyframes drip{0%{transform:scaleY(0)}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
 .btn-light{background:var(--cream);color:var(--espresso);border-color:var(--cream)}
 .btn-light:hover{background:transparent;color:var(--cream)}
@@ -120,22 +128,18 @@ footer p{margin:0 auto;color:var(--taupe)}
 
 /* Mouvement: une seule entrée, au chargement */
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:reduce){.badge svg{animation:none!important}*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 /* Mobile */
 @media (max-width:900px){
   .burger{display:block}
   .nav{position:fixed;inset:64px 0 auto 0;flex-direction:column;gap:1.2rem;padding:2rem;background:var(--cream);border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .3s;visibility:hidden}
   .nav.open{transform:none;visibility:visible}
+  .stick{--aw:74vw;--ah:70svh}
+  .w{font-size:31vw}
   .reveal{height:240svh}
-  .kicker{top:4.8rem;font-size:.75rem}
-  .stick{align-items:flex-end}
-  .word{position:absolute;inset:0;display:block}
-  .w{position:absolute;left:0;right:0;text-align:center}
-  .w:first-child{top:16svh;font-size:31vw}
-  .w:last-child{display:none}
-  .gate{position:absolute;left:50%;top:34svh;margin:0;width:64vw;height:56svh;transform:translateX(-50%)}
-  .w:first-child::after{content:"nch";}
+  .badge{width:100px;height:100px;left:calc(50% + var(--aw)/2 - 66px);top:calc(50% + var(--ah)/2 - 70px)}
+  .badge img{width:34px}
   .atelier{grid-template-columns:1fr}
   .arch.small{height:340px;width:min(100%,320px);margin-inline:auto}
   .arch.offset{margin-top:0}
