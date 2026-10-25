@@ -1,4 +1,4 @@
-// Menu: vul hier de prijzen in (getal in MAD, bv. 45). Leeg = geen prijs getoond.
+// Menu: prijzen in MAD (getal, bv. 45). Leeg = geen prijs getoond. Fictieve prijzen, pas aan.
 // Prijs staat bij het gerecht, of bij elke maat/variant.
 const MENU = [
  {
@@ -8,43 +8,43 @@ const MENU = [
     "name": "Thé à la menthe",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "20"
    },
    {
     "name": "Infusion",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "25"
    },
    {
     "name": "Expresso",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "18"
    },
    {
     "name": "Allongé",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "20"
    },
    {
     "name": "Café au lait",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "25"
    },
    {
     "name": "Cappuccino",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "30"
    },
    {
     "name": "Latté",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "32"
    }
   ]
  },
@@ -55,37 +55,37 @@ const MENU = [
     "name": "Iced latté",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "38"
    },
    {
     "name": "Iced latté aromatisé",
     "desc": "Caramel, vanille, etc.",
     "sizes": [],
-    "price": ""
+    "price": "42"
    },
    {
     "name": "Iced pistachio latté",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "48"
    },
    {
     "name": "Matcha",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "45"
    },
    {
     "name": "Matcha mangue ou fraise",
     "desc": "Mangue ou fraise",
     "sizes": [],
-    "price": ""
+    "price": "50"
    },
    {
     "name": "Limonade",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "30"
    },
    {
     "name": "Virgin Mojito",
@@ -93,22 +93,22 @@ const MENU = [
     "sizes": [
      {
       "label": "Classique",
-      "price": "",
+      "price": "35",
       "desc": ""
      },
      {
       "label": "Fraise",
-      "price": "",
+      "price": "40",
       "desc": ""
      },
      {
       "label": "Fruits rouges",
-      "price": "",
+      "price": "40",
       "desc": ""
      },
      {
       "label": "Passion",
-      "price": "",
+      "price": "40",
       "desc": ""
      }
     ]
@@ -122,25 +122,25 @@ const MENU = [
     "name": "Smoothie fraise banane",
     "desc": "Fraise, banane",
     "sizes": [],
-    "price": ""
+    "price": "40"
    },
    {
     "name": "Smoothie fruits rouges",
     "desc": "Fruits rouges",
     "sizes": [],
-    "price": ""
+    "price": "42"
    },
    {
     "name": "Smoothie coco mangue",
     "desc": "Coco, mangue",
     "sizes": [],
-    "price": ""
+    "price": "42"
    },
    {
     "name": "Smoothie coco ananas",
     "desc": "Coco, ananas",
     "sizes": [],
-    "price": ""
+    "price": "40"
    }
   ]
  },
@@ -151,49 +151,49 @@ const MENU = [
     "name": "Avocado Toast",
     "desc": "Pain céréales, cheese, houmous poivron, avocat, burrata, feta",
     "sizes": [],
-    "price": ""
+    "price": "75"
    },
    {
     "name": "Chic Salmon",
     "desc": "Croissant, cheese, salade, saumon fumé, œuf poché",
     "sizes": [],
-    "price": ""
+    "price": "95"
    },
    {
     "name": "Burger Kif-Kif",
     "desc": "Bun brioché (du jour), sauce blanche, salade, crispy poulet, cheddar, omelette",
     "sizes": [],
-    "price": ""
+    "price": "85"
    },
    {
     "name": "Eggs Bénédict",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "80"
    },
    {
     "name": "Frenchy Glam",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "70"
    },
    {
     "name": "Exotique Rolls",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "65"
    },
    {
     "name": "Club sandwich César",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "70"
    },
    {
     "name": "Chèvre chaud",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "65"
    },
    {
     "name": "Œufs",
@@ -201,17 +201,17 @@ const MENU = [
     "sizes": [
      {
       "label": "Au plat",
-      "price": "",
+      "price": "45",
       "desc": "2 œufs"
      },
      {
       "label": "Brouillés",
-      "price": "",
+      "price": "45",
       "desc": "2 œufs"
      },
      {
       "label": "Soufflé au fromage",
-      "price": "",
+      "price": "55",
       "desc": ""
      }
     ]
@@ -225,7 +225,7 @@ const MENU = [
     "name": "French Toast",
     "desc": "Brioche perdue, x2. Au choix : fruits rouges / banane Nutella / pistache + éclats / pistache kunéfe chocolat (voir Suppléments)",
     "sizes": [],
-    "price": ""
+    "price": "60"
    },
    {
     "name": "Pancakes",
@@ -233,12 +233,12 @@ const MENU = [
     "sizes": [
      {
       "label": "Petit (x3)",
-      "price": "",
+      "price": "50",
       "desc": ""
      },
      {
       "label": "Grand (x2)",
-      "price": "",
+      "price": "60",
       "desc": ""
      }
     ]
@@ -247,19 +247,19 @@ const MENU = [
     "name": "Croissant gourmand",
     "desc": "Crème pâtissière vanille, fruits rouges, éclats de pistache",
     "sizes": [],
-    "price": ""
+    "price": "45"
    },
    {
     "name": "Granola Bowl",
     "desc": "Yaourt grec, fruits du jour, muesli, miel",
     "sizes": [],
-    "price": ""
+    "price": "55"
    },
    {
     "name": "Exotic Bowl",
     "desc": "",
     "sizes": [],
-    "price": ""
+    "price": "60"
    },
    {
     "name": "Viennoiseries",
@@ -267,17 +267,17 @@ const MENU = [
     "sizes": [
      {
       "label": "Croissant",
-      "price": "",
+      "price": "12",
       "desc": "Croissant"
      },
      {
       "label": "Pain au chocolat",
-      "price": "",
+      "price": "14",
       "desc": "Pain au chocolat"
      },
      {
       "label": "Pain aux raisins",
-      "price": "",
+      "price": "14",
       "desc": "Pain aux raisins"
      }
     ]

@@ -108,22 +108,22 @@ p{max-width:58ch}
 .carte{background:var(--sand);padding:6rem clamp(1rem,5vw,5rem);text-align:center}
 .carte h2{margin-bottom:.4rem}
 .carte-sub{margin:0 auto 2.5rem;color:var(--taupe);font-style:italic;font-family:var(--serif);font-size:1.2rem}
-.acc-row{display:flex;gap:clamp(.6rem,1.4vw,1.2rem);height:min(76svh,680px);min-height:520px;max-width:1300px;margin:0 auto;text-align:left}
-.acc{position:relative;flex:1 1 0;min-width:0;border-radius:999px 999px 0 0;overflow:hidden;background:var(--taupe);transition:flex-grow .7s cubic-bezier(.3,.7,.2,1)}
-.acc.open{flex-grow:6}
+.acc-row{display:flex;gap:clamp(.6rem,1.4vw,1.2rem);height:min(86svh,780px);min-height:620px;max-width:1300px;margin:0 auto;text-align:left}
+.acc{position:relative;flex:1 1 0;min-width:0;border-radius:999px 999px 0 0;overflow:hidden;background:var(--taupe);transition:flex-grow .7s cubic-bezier(.3,.7,.2,1),border-radius .7s cubic-bezier(.3,.7,.2,1)}
+.acc.open{flex-grow:6;border-radius:260px 260px 0 0}
 .acc-pic{position:absolute;left:0;right:0;top:0;height:100%;background-size:cover;background-position:center;transition:height .7s cubic-bezier(.3,.7,.2,1)}
 .acc-pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,30,22,.1),rgba(40,30,22,.55))}
-.acc.open .acc-pic{height:34%}
+.acc.open .acc-pic{height:260px}
 .acc-h{position:absolute;inset:0;z-index:2;width:100%;height:100%;background:none;border:0;cursor:pointer;color:var(--cream);font:italic 300 clamp(1.5rem,2.2vw,2.1rem) var(--serif);display:flex;align-items:flex-end;justify-content:center;padding-bottom:2rem}
 .acc-h span{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}
-.acc.open .acc-h{height:34%;align-items:flex-end;padding-bottom:1.2rem}
+.acc.open .acc-h{height:260px;align-items:flex-end;padding-bottom:1.2rem}
 .acc.open .acc-h span{writing-mode:horizontal-tb;transform:none}
-.acc-body{position:absolute;left:0;right:0;top:34%;bottom:0;background:var(--cream);opacity:0;visibility:hidden;overflow-y:auto;padding:1rem clamp(1.2rem,3vw,2.6rem) 2rem;transition:opacity .4s .35s}
+.acc-body{position:absolute;left:0;right:0;top:260px;bottom:0;background:var(--cream);opacity:0;visibility:hidden;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line) transparent;padding:.4rem clamp(1.2rem,3vw,2.6rem) 2.5rem;-webkit-mask-image:linear-gradient(#000 calc(100% - 32px),transparent);mask-image:linear-gradient(#000 calc(100% - 32px),transparent);transition:opacity .4s .35s}
 .acc.open .acc-body{opacity:1;visibility:visible}
 .acc-body ul{list-style:none}
-.acc-body>ul>li{padding:.9rem 0;border-bottom:1px solid var(--line)}
+.acc-body>ul>li{padding:.75rem 0;border-bottom:1px solid var(--line)}
 .row{display:flex;justify-content:space-between;gap:1.5rem;align-items:baseline}
-.dish{font-family:var(--serif);font-size:1.4rem;font-weight:500;line-height:1.2}
+.dish{font-family:var(--serif);font-size:1.3rem;font-weight:500;line-height:1.2}
 .desc{font-size:.9rem;color:var(--taupe);margin-top:.2rem;max-width:none}
 .sizes{margin-top:.4rem;font-size:.92rem}
 .sizes li{display:flex;justify-content:space-between;gap:1rem;padding:.12rem 0;color:var(--taupe)}
@@ -132,7 +132,7 @@ p{max-width:58ch}
 @media (max-width:800px){
   .acc-row{flex-direction:column;height:auto;min-height:0}
   .acc{flex:none;height:92px;border-radius:46px 46px 0 0;transition:height .6s cubic-bezier(.3,.7,.2,1)}
-  .acc.open{height:min(78svh,640px)}
+  .acc.open{height:min(78svh,640px);border-radius:46px 46px 0 0}
   .acc.open .acc-pic,.acc.open .acc-h{height:120px}
   .acc-h{align-items:center;padding:0}
   .acc-h span{writing-mode:horizontal-tb;transform:none}

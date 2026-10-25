@@ -29,7 +29,8 @@ document.getElementById("resa").addEventListener("submit", e => {
 // Menu: harmonica van arches, gevuld vanuit js/menu.js
 (function () {
   const root = document.getElementById("acc");
-  const PIC = ["tea.jpg", "latte.jpg", "doorway.jpg", "toast.jpg", "croissant.jpg"]; // foto per categorie (volgorde van MENU)
+  const PIC = ["tea.jpg", "latte.jpg", "smoothies.jpg", "toast.jpg", "croissant.jpg"]; // foto per categorie (volgorde van MENU)
+  const POS = ["center","center","center 56%","center","center"];
   const price = p => (p ? `<span class="price">${p} MAD</span>` : "");
   root.innerHTML = MENU.map((c, i) => {
     const items = c.items.map(it => {
@@ -37,11 +38,12 @@ document.getElementById("resa").addEventListener("submit", e => {
         ? `<ul class="sizes">${it.sizes.map(s => `<li><span>${s.label}${s.desc ? ` <small>${s.desc}</small>` : ""}</span>${price(s.price)}</li>`).join("")}</ul>` : "";
       return `<li><div class="row"><span class="dish">${it.name}</span>${price(it.price)}</div>${it.desc ? `<p class="desc">${it.desc}</p>` : ""}${sizes}</li>`;
     }).join("");
-    return `<div class="acc${i === 0 ? " open" : ""}"><div class="acc-pic" style="background-image:url(assets/photos/${PIC[i % PIC.length]})"></div><button class="acc-h" type="button" aria-expanded="${i === 0}" aria-controls="acc-${i}"><span>${c.name}</span></button><div class="acc-body" id="acc-${i}"><ul>${items}</ul></div></div>`;
+    return `<div class="acc${i === 0 ? " open" : ""}"><div class="acc-pic" style="background-image:url(assets/photos/${PIC[i % PIC.length]});background-position:${POS[i % POS.length]}"></div><button class="acc-h" type="button" aria-expanded="${i === 0}" aria-controls="acc-${i}"><span>${c.name}</span></button><div class="acc-body" id="acc-${i}"><ul>${items}</ul></div></div>`;
   }).join("");
   const panels = [...root.querySelectorAll(".acc")];
   panels.forEach(p => p.querySelector(".acc-h").addEventListener("click", () => {
     panels.forEach(q => { const o = q === p; q.classList.toggle("open", o); q.querySelector(".acc-h").setAttribute("aria-expanded", o); });
+    p.querySelector(".acc-body").scrollTop = 0;
   }));
 })();
 
