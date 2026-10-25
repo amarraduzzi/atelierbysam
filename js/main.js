@@ -29,8 +29,8 @@ document.getElementById("resa").addEventListener("submit", e => {
 // Menu: harmonica van arches, gevuld vanuit js/menu.js
 (function () {
   const root = document.getElementById("acc");
-  const PIC = ["tea.jpg", "latte.jpg", "smoothies.jpg", "toast.jpg", "croissant.jpg"]; // foto per categorie (volgorde van MENU)
-  const POS = ["center","center","center 56%","center","center"];
+  const PIC = ["menu-tea-chaudes.jpg", "menu-froides.jpg", "menu-smoothies.jpg", "menu-sales.jpg", "menu-sucres.jpg"]; // foto per categorie (volgorde van MENU)
+  const POS = ["60% 61%", "64% 58%", "55% 58%", "40% 73%", "52% 67%"]; // uitsnede per foto: x y
   const price = p => (p ? `<span class="price">${p} MAD</span>` : "");
   root.innerHTML = MENU.map((c, i) => {
     const items = c.items.map(it => {
