@@ -113,30 +113,36 @@
 <section class="reserver" id="reserver">
   <div class="resa-wrap">
     <div class="resa-stage"><form id="resa" class="resa-card" novalidate>
-      <div class="resa-photo"><img src="assets/photos/reserver.jpg" alt="Table dressée chez L’Atelier by Sam" width="700" height="933" loading="lazy"></div>
-      <div class="resa-body">
+      <header class="resa-head">
         <h2>Réserver une table</h2>
         <p class="resa-sub">Choisissez, puis confirmez sur WhatsApp.</p>
-        <fieldset><legend>Personnes</legend><div class="chipset pers" id="pers"></div></fieldset>
-        <fieldset><legend>Date</legend><div class="days" id="days"></div><input type="date" id="date-more" class="date-more" aria-label="Autre date" hidden></fieldset>
-        <fieldset><legend>Heure</legend><div class="slots" id="slots"></div></fieldset>
-        <label class="fld">Nom<input name="nom" required autocomplete="name" placeholder="Votre nom"></label>
-        <label class="fld">Remarque <small>(facultatif)</small><input name="note" placeholder="Allergie, anniversaire, chaise bébé…"></label>
-        <p class="recap" id="recap" aria-live="polite">Choisissez une heure</p>
-        <button class="btn btn-solid" type="submit">Confirmer sur WhatsApp</button>
+      </header>
+      <div class="resa-grid">
+        <div class="resa-col">
+          <fieldset><legend>Personnes</legend><div class="chipset pers" id="pers"></div></fieldset>
+          <fieldset><legend>Date</legend><div class="days" id="days"></div><input type="date" id="date-more" class="date-more" aria-label="Autre date" hidden></fieldset>
+          <fieldset><legend>Heure</legend><div class="slots" id="slots"></div></fieldset>
+        </div>
+        <div class="resa-col">
+          <div class="resa-photo"><img src="assets/photos/reserver.jpg" alt="Table dressée chez L’Atelier by Sam" width="700" height="933" loading="lazy"></div>
+          <label class="fld">Nom<input name="nom" required autocomplete="name" placeholder="Votre nom"></label>
+          <label class="fld">Remarque <small>(facultatif)</small><input name="note" placeholder="Allergie, anniversaire, chaise bébé…"></label>
+          <p class="recap" id="recap" aria-live="polite">Choisissez une heure</p>
+          <button class="btn btn-solid" type="submit">Confirmer sur WhatsApp</button>
+        </div>
       </div>
     </form></div>
     <div class="resa-info" id="infos">
       <h2>Venir chez Sam</h2>
-      <p class="lead">Agdal, Rabat<br><span data-edit>Adresse exacte à ajouter</span></p>
-      <h3>Horaires</h3>
-      <p>Tous les jours<br>10h00 – 21h00</p>
-      <div class="pills">
-        <a class="pill" href="tel:+212600000000" data-edit>Appeler</a>
-        <a class="pill" href="https://www.google.com/maps/search/?api=1&query=L%27Atelier+by+Sam+Agdal+Rabat" target="_blank" rel="noopener">Itinéraire</a>
-        <a class="pill" href="https://instagram.com/" target="_blank" rel="noopener" data-edit>Instagram</a>
+      <div><h3>Adresse</h3><p class="lead">Agdal, Rabat<br><span data-edit>Adresse exacte à ajouter</span></p></div>
+      <div><h3>Horaires</h3><p>Tous les jours<br>10h00 – 21h00</p></div>
+      <div><h3>Contact</h3>
+        <div class="pills">
+          <a class="pill" href="tel:+212600000000" data-edit>Appeler</a>
+          <a class="pill" href="https://www.google.com/maps/search/?api=1&query=L%27Atelier+by+Sam+Agdal+Rabat" target="_blank" rel="noopener">Itinéraire</a>
+          <a class="pill" href="https://instagram.com/" target="_blank" rel="noopener" data-edit>Instagram</a>
+        </div>
       </div>
-      <div class="resa-visual"><img src="assets/photos/salle.jpg" alt="Brunch et fleurs sur la table" width="608" height="810" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -144,7 +150,7 @@
 </main>
 
 <footer>
-  <img src="assets/logo.png" alt="L’Atelier by Sam" width="200" height="159">
+  <img src="assets/logo-light.png" alt="L’Atelier by Sam" width="200" height="159">
   <p>Agdal, Rabat · Maroc</p>
   <p class="small">© <span id="y">2026</span> L’Atelier by Sam</p>
 </footer>

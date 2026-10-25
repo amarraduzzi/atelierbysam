@@ -1,13 +1,13 @@
 /* ===== Kleuren: pas hier aan zodra Sam zijn kleuren doorgeeft ===== */
 :root{
   --cream:#F7F3E9;        /* achtergrond */
-  --sand:#E8E0CC;         /* tweede vlak */
+  --sand:#E6D5BE;         /* tweede vlak */
   --mist:#EEF0DF;         /* zachte pistache-tint (arcade, galerij) */
-  --pistache:#8E9A5B;     /* accent: lijnen, ringen */
+  --pistache:#A6B36A;     /* accent: lijnen, ringen */
   --pistache-l:#C9D1A0;
   --olive:#4F5A2E;        /* donker groen: knoppen, reservering */
-  --plum:#6E2F3F;         /* prijzen en kleine accenten */
-  --taupe:#6B4A38;        /* noyer: secundaire tekst */
+  --plum:#7A3348;         /* prijzen en kleine accenten */
+  --taupe:#5E4030;        /* noyer: secundaire tekst */
   --espresso:#3A2D24;     /* tekst */
   --sage:#8E9A5B;
   --line:rgba(110,122,64,.4);
@@ -34,8 +34,8 @@ p{max-width:58ch}
 .nav{display:flex;gap:2rem;align-items:center;font-size:.95rem;letter-spacing:.04em}
 .nav a{text-decoration:none;padding:.3rem 0;border-bottom:1px solid transparent;transition:border-color .2s}
 .nav a:hover{border-color:var(--pistache)}
-.nav .nav-cta{border:1px solid var(--olive);padding:.45rem 1.2rem;border-radius:999px}
-.nav .nav-cta:hover{background:var(--olive);color:var(--cream)}
+.nav .nav-cta{color:var(--plum);border:1px solid var(--plum);padding:.45rem 1.2rem;border-radius:999px}
+.nav .nav-cta:hover{background:var(--plum);color:var(--cream)}
 .burger{display:none;background:none;border:0;width:40px;height:40px;position:relative;cursor:pointer}
 .burger span{position:absolute;left:8px;right:8px;height:1px;background:var(--espresso);transition:transform .25s}
 .burger span:first-child{top:15px}.burger span:last-child{top:24px}
@@ -81,7 +81,7 @@ p{max-width:58ch}
 .btn-ghost:hover{background:var(--cream);color:var(--espresso)}
 .actions{display:flex;flex-wrap:wrap;gap:1rem}
 .btn{display:inline-block;font:400 .95rem var(--sans);letter-spacing:.05em;text-decoration:none;padding:.9rem 2rem;border-radius:999px;border:1px solid var(--olive);cursor:pointer;transition:background .2s,color .2s}
-.btn-solid{background:var(--olive);color:var(--cream)}
+.btn-solid{background:var(--plum);border-color:var(--plum);color:var(--cream)}
 .btn-solid:hover{background:var(--espresso);border-color:var(--espresso)}
 .btn-line{background:transparent;color:var(--olive)}
 .btn-line:hover{background:var(--olive);color:var(--cream)}
@@ -154,60 +154,60 @@ p{max-width:58ch}
 .gp{margin:0}
 .gp-arch{aspect-ratio:3/4;border-radius:999px 999px 0 0;overflow:hidden;background:var(--sand);box-shadow:0 30px 60px -35px rgba(58,45,36,.5)}
 .gp-arch img{width:100%;height:100%;object-fit:cover}
-.gp figcaption{text-align:center;font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--olive);margin-top:.8rem}
+.gp figcaption{text-align:center;font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--plum);margin-top:.8rem}
 
 /* Réserver + infos */
 .reserver{background:var(--mist);color:var(--espresso);padding:6rem clamp(1.2rem,6vw,6rem)}
-.resa-wrap{display:grid;grid-template-columns:minmax(380px,520px) 1fr;gap:clamp(3rem,8vw,7rem);align-items:center;max-width:1150px;margin:0 auto}
-.resa-stage{background:var(--olive);border-radius:300px 300px 44px 44px;padding:22px}
-.resa-card{background:var(--cream);color:var(--espresso);border-radius:260px 260px 28px 28px;overflow:hidden;text-align:left;}
-.resa-photo{position:relative;height:270px;background:var(--sand)}
-.resa-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
-.resa-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(247,243,233,0) 62%,var(--cream) 100%)}
-.resa-body{padding:0 clamp(1.4rem,4vw,2.8rem) 2.6rem;margin-top:-1.2rem;position:relative;z-index:1}
-.resa-card h2{text-align:center;font-size:2.3rem;color:var(--olive);margin-bottom:.2rem}
-.resa-sub{max-width:none;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--taupe);margin-bottom:1.8rem}
-.resa-card fieldset{border:0;margin:0 0 1.5rem;min-width:0}
-.resa-card legend{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);font-weight:500;margin-bottom:.7rem;padding:0}
-.chipset{display:flex;flex-wrap:wrap;gap:.5rem}
-.chipset button,.days button,.slots button{font:400 .98rem var(--sans);color:var(--espresso);background:#fff9;border:1px solid var(--line);cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .15s}
+.resa-wrap{max-width:1100px;margin:0 auto}
+.resa-stage{background:var(--olive);border-radius:50% 50% 44px 44px / 150px 150px 44px 44px;padding:20px}
+.resa-card{background:var(--cream);color:var(--espresso);border-radius:50% 50% 28px 28px / 130px 130px 28px 28px;overflow:hidden;text-align:left}
+.resa-head{padding:2.2rem 1rem 0;text-align:center}
+.resa-card h2{font-size:2.1rem;color:var(--olive);margin-bottom:.1rem}
+.resa-sub{max-width:none;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--taupe);margin:0 0 1.5rem}
+.resa-col{min-width:0}
+.resa-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2.6rem;padding:0 clamp(1.6rem,4vw,3.2rem) 2.2rem}
+.resa-card fieldset{border:0;margin:0 0 1.1rem;min-width:0}
+.resa-card legend{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);font-weight:500;margin-bottom:.5rem;padding:0}
+.chipset{display:flex;flex-wrap:wrap;gap:.45rem}
+.chipset button,.days button,.slots button{font:400 .95rem var(--sans);color:var(--espresso);background:#fff9;border:1px solid var(--line);cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .15s}
 .chipset button:hover,.days button:hover,.slots button:hover{border-color:var(--olive)}
 .chipset button:active,.days button:active,.slots button:active{transform:scale(.96)}
 .chipset button[aria-pressed="true"],.days button[aria-pressed="true"],.slots button[aria-pressed="true"]{background:var(--olive);color:var(--cream);border-color:var(--olive)}
-.pers button{width:2.9rem;height:2.9rem;padding:0;border-radius:50%;text-align:center}
-.days{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
-.days button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;padding:.6rem .3rem;border-radius:16px;line-height:1.2}
-.days small{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
-.days b{font:400 1.2rem var(--serif);font-weight:500}
-.slots{display:grid;gap:1.1rem}
-.sg-t{max-width:none;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--taupe);margin-bottom:.4rem;line-height:1.2}
-.sg-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem}
-.slots button{padding:.55rem 0;border-radius:12px;text-align:center}
+.pers button{width:2.7rem;height:2.7rem;padding:0;border-radius:50%;text-align:center}
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem}
+.days button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:.38rem .3rem;border-radius:14px;line-height:1.2}
+.days small{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.days b{font:500 1.1rem var(--serif)}
+.slots{display:grid;gap:.75rem}
+.sg-t{max-width:none;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--taupe);margin-bottom:.25rem;line-height:1.2}
+.sg-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(4.1rem,1fr));gap:.4rem}
+.slots button{padding:.4rem 0;border-radius:11px;text-align:center;font-size:.92rem}
 .slots-empty{max-width:none;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--plum);padding:.4rem 0}
-.date-more{margin-top:.7rem;font:300 1rem var(--sans);color:var(--espresso);background:#fff9;border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem}
-.fld{display:flex;flex-direction:column;gap:.35rem;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);font-weight:500;margin-bottom:1rem}
+.date-more{margin-top:.6rem;font:300 1rem var(--sans);color:var(--espresso);background:#fff9;border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem}
+.resa-photo{height:150px;border-radius:50% 50% 16px 16px / 90px 90px 16px 16px;overflow:hidden;background:var(--sand);margin-bottom:1.1rem}
+.resa-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 68%}
+.fld{display:flex;flex-direction:column;gap:.3rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);font-weight:500;margin-bottom:.85rem}
 .fld small{text-transform:none;letter-spacing:0;opacity:.7;font-weight:300}
-.fld input{background:var(--mist);border:1px solid transparent;color:var(--espresso);font:300 1.05rem var(--sans);letter-spacing:0;text-transform:none;padding:.8rem 1rem;border-radius:14px}
+.fld input{background:var(--mist);border:1px solid transparent;color:var(--espresso);font:300 1rem var(--sans);letter-spacing:0;text-transform:none;padding:.65rem .95rem;border-radius:14px}
 .fld input::placeholder{color:var(--taupe);opacity:.55}
 .fld input:focus{outline:none;border-color:var(--olive);background:#fff}
-.recap{max-width:none;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--taupe);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:.8rem 0;margin:1.4rem 0 1.2rem}
+.recap{max-width:none;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--taupe);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:.55rem 0;margin:1rem 0 .9rem}
 .recap.ok{color:var(--olive)}
 .recap.warn{color:var(--plum)}
 .resa-card .btn{display:block;width:100%;text-align:center}
-.resa-info h2{color:var(--olive);font-size:clamp(2.2rem,4vw,3rem)}
-.resa-info h3{color:var(--taupe);font-size:1.5rem;margin:1.8rem 0 .4rem}
+.resa-info{margin-top:4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem 3rem;align-items:start}
+.resa-info h2{grid-column:1/-1;color:var(--olive);font-size:clamp(2rem,3.6vw,2.7rem);margin-bottom:0}
+.resa-info h3{color:var(--plum);font-size:1.4rem;margin:0 0 .4rem}
 .resa-info p{color:var(--espresso);margin:0 0 .3rem}
-.resa-info .lead{font-size:1.15rem;margin-top:.4rem}
-.pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
-.pill{text-decoration:none;color:var(--olive);border:1px solid var(--olive);border-radius:999px;padding:.65rem 1.3rem;font-size:.95rem;transition:background .2s,color .2s}
+.resa-info .lead{font-size:1.1rem}
+.pills{display:flex;flex-wrap:wrap;gap:.6rem}
+.pill{text-decoration:none;color:var(--olive);border:1px solid var(--olive);border-radius:999px;padding:.55rem 1.2rem;font-size:.95rem;transition:background .2s,color .2s}
 .pill:hover{background:var(--olive);color:var(--cream)}
-.resa-visual{width:min(250px,60%);aspect-ratio:3/4;margin-top:2.8rem;border-radius:999px 999px 0 0;overflow:hidden;border:1px solid var(--olive);padding:7px}
-.resa-visual img{width:100%;height:100%;object-fit:cover;border-radius:999px 999px 0 0}
 
 /* Footer */
-footer{text-align:center;padding:4rem 1.2rem 3rem}
+footer{text-align:center;padding:4rem 1.2rem 3rem;background:var(--plum);color:var(--cream)}
 footer img{margin:0 auto 1rem;width:170px}
-footer p{margin:0 auto;color:var(--taupe)}
+footer p{margin:0 auto;color:var(--sand)}
 .small{font-size:.85rem;margin-top:.4rem}
 
 /* Hero: décor desktop (rings, ombres, zellige, menu) */
@@ -268,17 +268,24 @@ footer p{margin:0 auto;color:var(--taupe)}
   .galerie{grid-template-columns:1fr;justify-items:center;gap:2.4rem;padding:4rem 1.4rem}
   .gp{width:min(78vw,320px)}
   .gp-mid{width:min(84vw,350px)}
-  .reserver{padding:4rem 1rem}
-  .resa-wrap{grid-template-columns:1fr;gap:3rem}
-  .resa-stage{border-radius:190px 190px 30px 30px;padding:12px}
-  .resa-card{border-radius:178px 178px 20px 20px}
-  .resa-photo{height:200px}
-  .resa-body{padding:0 1.2rem 2rem}
-  .resa-card h2{font-size:1.75rem}
-  .resa-visual{display:none}
+  .reserver{padding:3.5rem 1rem}
+  .resa-stage{border-radius:50% 50% 30px 30px / 120px 120px 30px 30px;padding:12px}
+  .resa-card{border-radius:50% 50% 20px 20px / 108px 108px 20px 20px}
+  .resa-head{padding-top:2.4rem}
+  .resa-card h2{font-size:1.7rem}
+  .resa-sub{font-size:1.05rem;margin-bottom:1.1rem}
+  .resa-grid{grid-template-columns:minmax(0,1fr);gap:0;padding:0 1.1rem 1.8rem}
+  .resa-photo{display:none}
+  .slots{gap:.55rem}
+  .sg-row{display:flex;overflow-x:auto;gap:.4rem;margin:0 -1.1rem;padding:0 1.1rem;scrollbar-width:none}
+  .sg-row::-webkit-scrollbar{display:none}
+  .slots button{flex:none;min-width:4.4rem}
+  .days{display:flex;overflow-x:auto;gap:.45rem;margin:0 -1.1rem;padding:0 1.1rem;scrollbar-width:none}
+  .days::-webkit-scrollbar{display:none}
+  .days button{flex:none;min-width:6.4rem}
   .pers{flex-wrap:nowrap;justify-content:space-between;gap:.3rem}
   .pers button{width:2.4rem;height:2.4rem}
-  .resa-sub{font-size:1.05rem}
+  .resa-info{grid-template-columns:1fr;margin-top:3rem;gap:1.4rem}
 }
 
 /* Categorieknoppen (alleen mobiel zichtbaar) */
@@ -294,3 +301,6 @@ footer p{margin:0 auto;color:var(--taupe)}
 .bar a.main{background:var(--plum);color:var(--cream);border-color:var(--plum)}
 
 @media (min-width:801px){.chips,.bar{display:none}.carte-sub .m{display:none}}
+
+/* Kaart: zoete categorie in prune */
+.acc:nth-child(5) .acc-pic::after{background:linear-gradient(180deg,rgba(122,51,72,.25),rgba(122,51,72,.72))}
