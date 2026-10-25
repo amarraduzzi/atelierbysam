@@ -61,6 +61,7 @@ document.getElementById("resa").addEventListener("submit", e => {
   const front = reveal.querySelector(".w.front");
   const badge = reveal.querySelector(".badge");
   const hint = reveal.querySelector(".hint");
+  const deco = reveal.querySelector(".deco");
   const mq = window.matchMedia("(max-width:800px)");
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const lerp = (a, b, t) => a + (b - a) * t;
@@ -91,6 +92,9 @@ document.getElementById("resa").addEventListener("submit", e => {
     front.style.opacity = clamp(1 - p / 0.4);
     badge.style.opacity = clamp(1 - p / 0.25);
     hint.style.opacity = clamp(1 - p / 0.15);
+    const df = clamp(1 - p / 0.35);
+    deco.style.opacity = df;
+    deco.style.visibility = df < 0.02 ? "hidden" : "visible";
     const t = clamp((p - 0.62) / 0.3);
     shade.style.opacity = t; over.style.opacity = t;
     over.style.pointerEvents = t > 0.5 ? "auto" : "none";
