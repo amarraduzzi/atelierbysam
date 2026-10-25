@@ -26,26 +26,23 @@ document.getElementById("resa").addEventListener("submit", e => {
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
 });
 
-// Menu met tabbladen, gevuld vanuit js/menu.js
+// Menu: harmonica van arches, gevuld vanuit js/menu.js
 (function () {
-  const tabs = document.querySelector(".tabs");
-  const list = document.getElementById("menu-list");
+  const root = document.getElementById("acc");
+  const PIC = ["tea.jpg", "latte.jpg", "doorway.jpg", "toast.jpg", "croissant.jpg"]; // foto per categorie (volgorde van MENU)
   const price = p => (p ? `<span class="price">${p} MAD</span>` : "");
-  function show(i) {
-    tabs.querySelectorAll("button").forEach((b, k) => b.setAttribute("aria-selected", k === i));
-    list.innerHTML = MENU[i].items.map(it => {
+  root.innerHTML = MENU.map((c, i) => {
+    const items = c.items.map(it => {
       const sizes = it.sizes && it.sizes.length
         ? `<ul class="sizes">${it.sizes.map(s => `<li><span>${s.label}${s.desc ? ` <small>${s.desc}</small>` : ""}</span>${price(s.price)}</li>`).join("")}</ul>` : "";
       return `<li><div class="row"><span class="dish">${it.name}</span>${price(it.price)}</div>${it.desc ? `<p class="desc">${it.desc}</p>` : ""}${sizes}</li>`;
     }).join("");
-  }
-  MENU.forEach((c, i) => {
-    const b = document.createElement("button");
-    b.type = "button"; b.setAttribute("role", "tab"); b.textContent = c.name;
-    b.addEventListener("click", () => show(i));
-    tabs.appendChild(b);
-  });
-  show(0);
+    return `<div class="acc${i === 0 ? " open" : ""}"><div class="acc-pic" style="background-image:url(assets/photos/${PIC[i % PIC.length]})"></div><button class="acc-h" type="button" aria-expanded="${i === 0}" aria-controls="acc-${i}"><span>${c.name}</span></button><div class="acc-body" id="acc-${i}"><ul>${items}</ul></div></div>`;
+  }).join("");
+  const panels = [...root.querySelectorAll(".acc")];
+  panels.forEach(p => p.querySelector(".acc-h").addEventListener("click", () => {
+    panels.forEach(q => { const o = q === p; q.classList.toggle("open", o); q.querySelector(".acc-h").setAttribute("aria-expanded", o); });
+  }));
 })();
 
 // Hero: het raam opent zich bij het scrollen
