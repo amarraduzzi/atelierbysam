@@ -51,9 +51,9 @@ p{max-width:58ch}
 /* Hero: le raam s'ouvre au scroll */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .reveal{height:260svh;position:relative}
-.stick{--aw:min(44vw,520px);--ah:76svh;position:sticky;top:0;height:100svh;overflow:hidden;background:var(--cream)}
+.stick{--aw:min(44vw,520px);--ah:76svh;position:sticky;top:0;height:100svh;overflow:hidden;background:radial-gradient(circle at 50% 52%,#F5F4E6 0%,#E6EBCF 78%)}
 .w{font-family:var(--serif);font-weight:300;font-size:min(24vw,40svh);line-height:1;letter-spacing:-.02em;white-space:nowrap;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
-.w.back{color:var(--espresso);z-index:1}
+.w.back{color:var(--olive);z-index:1}
 .w.front{color:var(--cream);z-index:2}
 .gate{position:absolute;left:50%;top:50%;width:var(--aw);height:var(--ah);transform:translate(-50%,-50%);border-radius:999px 999px 0 0;overflow:hidden;z-index:2;box-shadow:0 40px 80px -40px rgba(58,45,36,.55);background:var(--sand);animation:openArch 1.5s cubic-bezier(.2,.7,.2,1) both}
 .gate .g-video,.gate .g-photo,.gate .g-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -65,11 +65,11 @@ p{max-width:58ch}
 .gate-logo{width:min(250px,60vw)}
 .gate-over p{font-family:var(--serif);font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.3;margin:0 auto}
 .gate-over .actions{justify-content:center}
-.badge{position:absolute;z-index:5;width:128px;height:128px;left:calc(50% + var(--aw)/2 - 72px);top:calc(50% + var(--ah)/2 - 100px);border-radius:50%;background:var(--cream);box-shadow:0 12px 30px -12px rgba(58,45,36,.4);display:grid;place-items:center;animation:fadeIn 1s 1.2s backwards}
+.badge{position:absolute;z-index:5;width:128px;height:128px;left:calc(50% + var(--aw)/2 - 72px);top:calc(50% + var(--ah)/2 - 100px);border-radius:50%;background:var(--olive);box-shadow:0 12px 30px -12px rgba(58,45,36,.4);display:grid;place-items:center;animation:fadeIn 1s 1.2s backwards}
 .badge svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 28s linear infinite}
-.badge text{font:400 15.5px var(--sans);letter-spacing:.12em;fill:var(--olive);text-transform:uppercase}
+.badge text{font:400 15.5px var(--sans);letter-spacing:.12em;fill:#E6EBCB;text-transform:uppercase}
 .badge img{width:44px;height:auto;position:relative}
-.hint{position:absolute;z-index:5;left:clamp(1.2rem,4vw,3rem);bottom:1.4rem;max-width:none;font-size:.78rem;letter-spacing:.18em;color:var(--taupe)}
+.hint{position:absolute;z-index:5;left:clamp(1.2rem,4vw,3rem);bottom:1.4rem;max-width:none;font-size:.78rem;letter-spacing:.18em;color:var(--olive)}
 .hint::after{content:"";display:block;width:1px;height:34px;background:var(--pistache);margin:.6rem 0 0 .4rem;animation:drip 2s ease-in-out infinite;transform-origin:top}
 @keyframes openArch{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -179,16 +179,16 @@ footer p{margin:0 auto;color:var(--taupe)}
 
 /* Hero: décor desktop (rings, ombres, zellige, menu) */
 .deco{position:absolute;inset:0;z-index:0;pointer-events:none}
-.deco .pattern{position:absolute;inset:0;opacity:.1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%237A6048' stroke-width='1'%3E%3Crect x='24' y='24' width='48' height='48'/%3E%3Crect x='24' y='24' width='48' height='48' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='6'/%3E%3C/g%3E%3C/svg%3E");-webkit-mask-image:radial-gradient(ellipse at center,transparent 28%,#000 90%);mask-image:radial-gradient(ellipse at center,transparent 28%,#000 90%)}
+.deco .pattern{position:absolute;inset:0;opacity:.28;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%238E9A5B' stroke-width='1'%3E%3Crect x='24' y='24' width='48' height='48'/%3E%3Crect x='24' y='24' width='48' height='48' transform='rotate(45 48 48)'/%3E%3Ccircle cx='48' cy='48' r='6'/%3E%3C/g%3E%3C/svg%3E");-webkit-mask-image:radial-gradient(ellipse at center,transparent 28%,#000 90%);mask-image:radial-gradient(ellipse at center,transparent 28%,#000 90%)}
 .deco .palm{position:absolute;left:-60px;top:-50px;width:48vw;max-width:720px;opacity:.08;transform-origin:0 0;animation:sway 11s ease-in-out infinite alternate}
 @keyframes sway{from{transform:rotate(-1.8deg)}to{transform:rotate(1.8deg)}}
 .rings{position:absolute;left:50%;top:50%;width:130svh;height:130svh;transform:translate(-50%,-50%)}
 .rings svg{width:100%;height:100%;overflow:visible}
 .rings circle{fill:none;stroke:var(--pistache);stroke-width:1.2;transform-origin:500px 500px}
-.rings .r1{opacity:.45}
-.rings .r2{opacity:.4;stroke-dasharray:1200 1190;animation:spin 120s linear infinite}
-.rings .r3{opacity:.22;stroke-dasharray:6 14;animation:spin 200s linear infinite reverse}
-.side-l{position:absolute;left:clamp(1.4rem,4vw,4rem);top:50%;writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg);font-family:var(--serif);font-style:italic;font-size:1.35rem;line-height:1.6;color:var(--taupe);max-width:none;letter-spacing:.04em}
+.rings .r1{opacity:.75}
+.rings .r2{opacity:.65;stroke-dasharray:1200 1190;animation:spin 120s linear infinite}
+.rings .r3{opacity:.45;stroke-dasharray:6 14;animation:spin 200s linear infinite reverse}
+.side-l{position:absolute;left:clamp(1.4rem,4vw,4rem);top:50%;writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg);font-family:var(--serif);font-style:italic;font-size:1.35rem;line-height:1.6;color:var(--olive);max-width:none;letter-spacing:.04em}
 .side-r{position:absolute;right:clamp(1.4rem,4vw,4rem);top:50%;transform:translateY(-50%);width:min(250px,17vw);color:var(--espresso)}
 .side-r h2{font-size:2.1rem;color:var(--olive);margin-bottom:.6rem}
 .side-r ul{list-style:none}
