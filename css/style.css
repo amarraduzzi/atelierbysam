@@ -178,6 +178,17 @@ footer p{margin:0 auto;color:var(--taupe)}
   .burger{display:block}
   .nav{position:fixed;inset:64px 0 auto 0;flex-direction:column;gap:1.2rem;padding:2rem;background:var(--cream);border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .3s;visibility:hidden}
   .nav.open{transform:none;visibility:visible}
+  /* L'Atelier mobile: pile de cartes */
+  .ghost{display:none}
+  .arcade-stick{align-items:stretch}
+  .track{position:absolute;inset:0;display:block;padding:0}
+  .pan{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);will-change:transform,opacity}
+  .intro{width:84vw;top:36%}
+  .intro p+p{display:none}
+  .a{margin:0}
+  .a .frame{width:74vw;height:54svh}
+  .a figcaption{text-align:center}
+  .outro{width:78vw;text-align:center;padding:0}
   .stick{--aw:74vw;--ah:70svh}
   .w{font-size:25vw}
   .w.back{display:none}

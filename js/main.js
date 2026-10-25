@@ -105,7 +105,7 @@ document.getElementById("resa").addEventListener("submit", e => {
   update();
 })();
 
-// L'Atelier: défilement horizontal (l'arcade)
+// L'Atelier: arcade horizontale (desktop) / pile de cartes (mobile)
 (function () {
   const sec = document.getElementById("atelier");
   if (!sec || window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
@@ -113,26 +113,60 @@ document.getElementById("resa").addEventListener("submit", e => {
   const ghost = sec.querySelector(".ghost");
   const bar = sec.querySelector(".prog i");
   const frames = [...sec.querySelectorAll(".frame")];
+  const pans = [...track.children];
+  const mq = window.matchMedia("(max-width:800px)");
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-  let dist = 0, ticking = false;
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  let dist = 0, ticking = false, mobile = null;
 
+  function reset() {
+    track.style.transform = ""; ghost.style.transform = "";
+    pans.forEach(p => { p.style.transform = ""; p.style.opacity = ""; p.style.zIndex = ""; p.style.pointerEvents = ""; });
+    frames.forEach(f => f.style.removeProperty("--px"));
+  }
   function measure() {
-    dist = Math.max(0, track.scrollWidth - window.innerWidth);
-    sec.style.height = dist + window.innerHeight + "px";
+    const m = mq.matches;
+    if (m !== mobile) { mobile = m; reset(); }
+    const vh = window.innerHeight;
+    if (mobile) {
+      sec.style.height = ((pans.length - 1) * 0.85 * vh + vh) + "px";
+    } else {
+      dist = Math.max(0, track.scrollWidth - window.innerWidth);
+      sec.style.height = dist + vh + "px";
+    }
     update();
   }
   function update() {
     ticking = false;
-    const vw = window.innerWidth;
-    const p = clamp(-sec.getBoundingClientRect().top / Math.max(1, sec.offsetHeight - window.innerHeight));
-    track.style.transform = "translate3d(" + -p * dist + "px,0,0)";
-    ghost.style.transform = "translate3d(" + -p * dist * 0.35 + "px,-50%,0)";
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const p = clamp(-sec.getBoundingClientRect().top / Math.max(1, sec.offsetHeight - vh));
     bar.style.transform = "scaleX(" + p + ")";
-    frames.forEach(f => {
-      const r = f.getBoundingClientRect();
-      const off = (r.left + r.width / 2 - vw / 2) * -0.07;
-      f.style.setProperty("--px", off + "px");
-    });
+    if (mobile) {
+      const steps = p * (pans.length - 1);
+      pans.forEach((el, j) => {
+        const cum = steps - j;
+        let y = 0, s = 1, o = 1;
+        if (cum < 0) {
+          const t = clamp(cum + 1);
+          y = (1 - ease(t)) * vh * (j === 1 ? 0.55 : 1.1);
+          if (j > 1 && t === 0) o = 0;
+        } else {
+          const t = clamp(cum);
+          y = -t * vh * 0.04; s = 1 - 0.07 * t; o = 1 - t;
+        }
+        el.style.transform = "translate(-50%,-50%) translate3d(0," + y + "px,0) scale(" + s + ")";
+        el.style.opacity = o;
+        el.style.zIndex = j + 1;
+        el.style.pointerEvents = (cum >= -0.05 && cum < 0.5) ? "auto" : "none";
+      });
+    } else {
+      track.style.transform = "translate3d(" + -p * dist + "px,0,0)";
+      ghost.style.transform = "translate3d(" + -p * dist * 0.35 + "px,-50%,0)";
+      frames.forEach(f => {
+        const r = f.getBoundingClientRect();
+        f.style.setProperty("--px", (r.left + r.width / 2 - vw / 2) * -0.07 + "px");
+      });
+    }
   }
   const req = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
   window.addEventListener("scroll", req, { passive: true });
