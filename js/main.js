@@ -104,3 +104,40 @@ document.getElementById("resa").addEventListener("submit", e => {
   window.addEventListener("resize", req);
   update();
 })();
+
+// L'Atelier: défilement horizontal (l'arcade)
+(function () {
+  const sec = document.getElementById("atelier");
+  if (!sec || window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  const track = sec.querySelector(".track");
+  const ghost = sec.querySelector(".ghost");
+  const bar = sec.querySelector(".prog i");
+  const frames = [...sec.querySelectorAll(".frame")];
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  let dist = 0, ticking = false;
+
+  function measure() {
+    dist = Math.max(0, track.scrollWidth - window.innerWidth);
+    sec.style.height = dist + window.innerHeight + "px";
+    update();
+  }
+  function update() {
+    ticking = false;
+    const vw = window.innerWidth;
+    const p = clamp(-sec.getBoundingClientRect().top / Math.max(1, sec.offsetHeight - window.innerHeight));
+    track.style.transform = "translate3d(" + -p * dist + "px,0,0)";
+    ghost.style.transform = "translate3d(" + -p * dist * 0.35 + "px,-50%,0)";
+    bar.style.transform = "scaleX(" + p + ")";
+    frames.forEach(f => {
+      const r = f.getBoundingClientRect();
+      const off = (r.left + r.width / 2 - vw / 2) * -0.07;
+      f.style.setProperty("--px", off + "px");
+    });
+  }
+  const req = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  window.addEventListener("scroll", req, { passive: true });
+  window.addEventListener("resize", measure);
+  window.addEventListener("load", measure);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+  measure();
+})();

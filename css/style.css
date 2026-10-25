@@ -78,11 +78,28 @@ p{max-width:58ch}
 .btn-line{background:transparent;color:var(--taupe)}
 .btn-line:hover{background:var(--taupe);color:var(--cream)}
 
-/* L'Atelier */
-.atelier{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:clamp(1.5rem,4vw,4rem);align-items:center;padding:6rem clamp(1.2rem,6vw,6rem)}
-.arch.small{height:420px}
-.arch.offset{margin-top:6rem}
-.atelier-text p+p{margin-top:1rem}
+/* L'Atelier: l'arcade, défilement horizontal */
+.arcade{position:relative}
+.arcade-stick{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:center;background:var(--cream)}
+.ghost{position:absolute;left:2vw;top:50%;transform:translateY(-50%);font-family:var(--serif);font-weight:300;font-size:min(46vw,70svh);line-height:1;color:var(--sand);opacity:.75;white-space:nowrap;z-index:0}
+.track{display:flex;align-items:center;gap:clamp(2rem,6vw,6rem);padding:0 clamp(1.5rem,8vw,8rem);position:relative;z-index:1;will-change:transform}
+.pan{flex:none}
+.intro{width:min(520px,82vw)}
+.intro p+p{margin-top:1rem}
+.a{margin:0;transform:translateY(var(--dy,0))}
+.frame{position:relative;width:var(--w);height:var(--h);border-radius:999px 999px 0 0;overflow:hidden;background:var(--sand);box-shadow:0 30px 60px -35px rgba(58,45,36,.5)}
+.frame img,.frame video{position:absolute;top:0;left:-10%;width:120%;height:100%;object-fit:cover;transform:translateX(var(--px,0px))}
+.a figcaption{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--taupe);margin-top:.7rem}
+.a1{--w:min(300px,64vw);--h:58svh;--dy:2svh}
+.a2{--w:min(280px,62vw);--h:50svh;--dy:-6svh}
+.a3{--w:min(320px,66vw);--h:62svh;--dy:4svh}
+.a4{--w:min(270px,60vw);--h:54svh;--dy:-3svh}
+.a5{--w:min(300px,64vw);--h:60svh;--dy:5svh}
+.outro{width:min(380px,70vw);padding-right:4vw}
+.outro .big{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,7vw,6rem);line-height:1;margin-bottom:1.5rem}
+.prog{position:absolute;bottom:1.6rem;left:50%;width:140px;height:1px;background:var(--line);transform:translateX(-50%);z-index:2}
+.prog i{display:block;height:1px;background:var(--taupe);transform-origin:0 0;transform:scaleX(0)}
+@media (prefers-reduced-motion:reduce){.arcade{height:auto!important}.arcade-stick{position:relative;height:auto;overflow-x:auto;padding:4rem 0}.ghost{display:none}.track{transform:none!important}}
 
 /* Carte */
 .carte{background:var(--sand);padding:6rem clamp(1.2rem,6vw,6rem);text-align:center}
@@ -167,9 +184,6 @@ footer p{margin:0 auto;color:var(--taupe)}
   .reveal{height:240svh}
   .badge{width:100px;height:100px;left:calc(50% + var(--aw)/2 - 66px);top:calc(50% + var(--ah)/2 - 70px)}
   .badge img{width:34px}
-  .atelier{grid-template-columns:1fr}
-  .arch.small{height:340px;width:min(100%,320px);margin-inline:auto}
-  .arch.offset{margin-top:0}
   .infos{grid-template-columns:1fr}.menu-list{columns:1}
   .galerie{grid-template-columns:1fr 1fr}
   .g{height:260px}.g2,.g4{margin-top:0}
