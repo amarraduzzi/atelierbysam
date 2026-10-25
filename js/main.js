@@ -23,6 +23,7 @@ document.getElementById("y").textContent = new Date().getFullYear();
   const slotsEl = document.getElementById("slots"), more = document.getElementById("date-more");
   const recap = document.getElementById("recap");
   const SLOTS = []; for (let h = 10; h <= 20; h++) { SLOTS.push([h, 0]); SLOTS.push([h, 30]); }
+  const GROUPS = [["Matin & midi", 600, 840], ["Après-midi", 840, 1080], ["Soir", 1080, 1260]]; // minuten sinds 0h
   const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
   const fr = (d, o) => d.toLocaleDateString("fr-FR", o);
   const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
@@ -30,34 +31,43 @@ document.getElementById("y").textContent = new Date().getFullYear();
   const state = { pers: "2", date: iso(new Date()), time: "" };
 
   const mk = (txt, val, on) => { const b = document.createElement("button"); b.type = "button"; b.textContent = txt; b.dataset.v = val; b.setAttribute("aria-pressed", on); return b; };
+  const mkDay = (top, bottom, val, on) => { const b = document.createElement("button"); b.type = "button"; b.innerHTML = `<small>${top}</small><b>${bottom}</b>`; b.dataset.v = val; b.setAttribute("aria-pressed", on); return b; };
   const setOn = (box, val) => box.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === val));
 
   ["1", "2", "3", "4", "5", "6", "7+"].forEach(v => persEl.appendChild(mk(v, v, v === state.pers)));
   const today = new Date(); today.setHours(0, 0, 0, 0);
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 5; i++) {
     const d = new Date(today); d.setDate(d.getDate() + i);
-    const t = i === 0 ? "Aujourd’hui" : i === 1 ? "Demain" : cap(fr(d, { weekday: "short", day: "numeric" }).replace(".", ""));
-    daysEl.appendChild(mk(t, iso(d), i === 0));
+    const top = i === 0 ? "Aujourd’hui" : i === 1 ? "Demain" : cap(fr(d, { weekday: "long" }));
+    const bottom = `${d.getDate()} ${fr(d, { month: "short" }).replace(".", "")}`;
+    daysEl.appendChild(mkDay(top, bottom, iso(d), i === 0));
   }
-  daysEl.appendChild(mk("Autre date", "other", false));
+  daysEl.appendChild(mkDay("Autre date", "Calendrier", "other", false));
   more.min = iso(today);
 
   function drawSlots() {
-    const now = new Date(), isToday = state.date === iso(now);
+    const now = new Date(), isToday = state.date === iso(now), nowMin = now.getHours() * 60 + now.getMinutes();
     slotsEl.innerHTML = "";
-    SLOTS.forEach(s => {
-      const past = isToday && (s[0] * 60 + s[1]) < (now.getHours() * 60 + now.getMinutes() + 30);
-      const b = mk(label(s), label(s), state.time === label(s));
-      b.disabled = past; if (past && state.time === label(s)) state.time = "";
-      slotsEl.appendChild(b);
+    let any = false;
+    GROUPS.forEach(([name, from, to]) => {
+      const list = SLOTS.filter(s => { const t = s[0] * 60 + s[1]; return t >= from && t < to && !(isToday && t < nowMin + 30); });
+      if (!list.length) return;
+      any = true;
+      const g = document.createElement("div"); g.className = "sg";
+      g.innerHTML = `<p class="sg-t">${name}</p>`;
+      const row = document.createElement("div"); row.className = "sg-row";
+      list.forEach(s => row.appendChild(mk(label(s), label(s), state.time === label(s))));
+      g.appendChild(row); slotsEl.appendChild(g);
     });
+    if (state.time && !slotsEl.querySelector(`[data-v="${state.time}"]`)) state.time = "";
+    if (!any) slotsEl.innerHTML = '<p class="slots-empty">Plus de créneaux aujourd’hui. Choisissez un autre jour.</p>';
   }
   function describe() {
     const d = new Date(state.date + "T12:00:00");
     const p = state.pers === "1" ? "1 personne" : state.pers + " personnes";
     return `${cap(fr(d, { weekday: "long", day: "numeric", month: "long" }))} · ${state.time || "…"} · ${p}`;
   }
-  function draw() { recap.classList.remove("warn"); recap.textContent = state.time ? describe() : "Choisissez une heure"; }
+  function draw() { recap.classList.remove("warn"); recap.classList.toggle("ok", !!state.time); recap.textContent = state.time ? describe() : "Choisissez une heure"; }
 
   persEl.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.pers = b.dataset.v; setOn(persEl, state.pers); draw(); });
   daysEl.addEventListener("click", e => {

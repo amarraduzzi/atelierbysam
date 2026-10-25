@@ -113,14 +113,18 @@
 <section class="reserver" id="reserver">
   <div class="resa-wrap">
     <form id="resa" class="resa-card" novalidate>
-      <h2>Réserver une table</h2>
-      <fieldset><legend>Personnes</legend><div class="chipset" id="pers"></div></fieldset>
-      <fieldset><legend>Date</legend><div class="chipset" id="days"></div><input type="date" id="date-more" class="date-more" aria-label="Autre date" hidden></fieldset>
-      <fieldset><legend>Heure</legend><div class="chipset slots" id="slots"></div></fieldset>
-      <label class="fld">Nom<input name="nom" required autocomplete="name" placeholder="Votre nom"></label>
-      <label class="fld">Remarque <small>(facultatif)</small><input name="note" placeholder="Allergie, anniversaire, chaise bébé…"></label>
-      <p class="recap" id="recap" aria-live="polite">Choisissez une heure</p>
-      <button class="btn btn-solid" type="submit">Confirmer sur WhatsApp</button>
+      <div class="resa-photo"><img src="assets/photos/reserver.jpg" alt="Table dressée chez L’Atelier by Sam" width="700" height="933" loading="lazy"></div>
+      <div class="resa-body">
+        <h2>Réserver une table</h2>
+        <p class="resa-sub">Choisissez, puis confirmez sur WhatsApp.</p>
+        <fieldset><legend>Personnes</legend><div class="chipset pers" id="pers"></div></fieldset>
+        <fieldset><legend>Date</legend><div class="days" id="days"></div><input type="date" id="date-more" class="date-more" aria-label="Autre date" hidden></fieldset>
+        <fieldset><legend>Heure</legend><div class="slots" id="slots"></div></fieldset>
+        <label class="fld">Nom<input name="nom" required autocomplete="name" placeholder="Votre nom"></label>
+        <label class="fld">Remarque <small>(facultatif)</small><input name="note" placeholder="Allergie, anniversaire, chaise bébé…"></label>
+        <p class="recap" id="recap" aria-live="polite">Choisissez une heure</p>
+        <button class="btn btn-solid" type="submit">Confirmer sur WhatsApp</button>
+      </div>
     </form>
     <div class="resa-info" id="infos">
       <h2>Venir chez Sam</h2>
@@ -132,6 +136,7 @@
         <a class="pill" href="https://www.google.com/maps/search/?api=1&query=L%27Atelier+by+Sam+Agdal+Rabat" target="_blank" rel="noopener">Itinéraire</a>
         <a class="pill" href="https://instagram.com/" target="_blank" rel="noopener" data-edit>Instagram</a>
       </div>
+      <div class="resa-visual"><img src="assets/photos/salle.jpg" alt="Brunch et fleurs sur la table" width="608" height="810" loading="lazy"></div>
     </div>
   </div>
 </section>
