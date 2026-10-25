@@ -130,13 +130,18 @@ p{max-width:58ch}
 .sizes small{opacity:.8}
 .price{white-space:nowrap;font-family:var(--serif);font-size:1.2rem;color:var(--taupe)}
 @media (max-width:800px){
-  .acc-row{flex-direction:column;height:auto;min-height:0}
-  .acc{flex:none;height:92px;border-radius:46px 46px 0 0;transition:height .6s cubic-bezier(.3,.7,.2,1)}
-  .acc.open{height:min(78svh,640px);border-radius:46px 46px 0 0}
-  .acc.open .acc-pic,.acc.open .acc-h{height:120px}
-  .acc-h{align-items:center;padding:0}
-  .acc-h span{writing-mode:horizontal-tb;transform:none}
-  .acc-body{top:120px}
+  /* Menu mobiel: categorieknoppen + één lijst, de pagina scrolt */
+  .carte{padding:4.5rem 1rem 4rem}
+  .carte-sub .d{display:none}.carte-sub .m{display:inline}
+  .acc-row{display:block;height:auto;min-height:0;scroll-margin-top:130px}
+  .acc{display:none;height:auto;transition:none}
+  .acc.open{display:block;height:auto;border-radius:999px 999px 0 0;background:var(--cream)}
+  .acc-pic,.acc.open .acc-pic{position:relative;height:230px;transition:none}
+  .acc-h,.acc.open .acc-h{height:230px;pointer-events:none}
+  .acc-body,.acc.open .acc-body{position:static;opacity:1;visibility:visible;overflow:visible;-webkit-mask-image:none;mask-image:none;padding:.4rem 1.4rem 2.2rem;transition:none}
+  .dish{font-size:1.25rem}
+  /* Actiebalk */
+  footer{padding-bottom:6.5rem}
 }
 
 /* Galerie */
@@ -196,21 +201,25 @@ footer p{margin:0 auto;color:var(--taupe)}
 @media (prefers-reduced-motion:reduce){.badge svg{animation:none!important}*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 /* Mobile */
-@media (max-width:900px){
+@media (max-width:800px){
   .burger{display:block}
   .nav{position:fixed;inset:64px 0 auto 0;flex-direction:column;gap:1.2rem;padding:2rem;background:var(--cream);border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .3s;visibility:hidden}
   .nav.open{transform:none;visibility:visible}
   /* L'Atelier mobile: pile de cartes */
-  .ghost{display:none}
-  .arcade-stick{align-items:stretch}
-  .track{position:absolute;inset:0;display:block;padding:0}
-  .pan{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);will-change:transform,opacity}
-  .intro{width:84vw;top:36%}
+  /* L'Atelier mobile: gewone scroll, bogen verschijnen */
+  .ghost,.prog{display:none}
+  .arcade{height:auto!important}
+  .arcade-stick{position:static;height:auto;display:block;overflow:visible;padding:4.5rem 1.4rem 3rem}
+  .track{display:flex;flex-direction:column;align-items:center;gap:3rem;padding:0;transform:none!important}
+  .pan{width:100%}
+  .intro{text-align:center}.intro p{margin-inline:auto}
   .intro p+p{display:none}
-  .a{margin:0}
-  .a .frame{width:74vw;height:54svh}
+  .a{transform:none;margin:0}
+  .a .frame{width:min(78vw,340px);height:auto;aspect-ratio:3/4;margin:0 auto}
   .a figcaption{text-align:center}
-  .outro{width:78vw;text-align:center;padding:0}
+  .outro{text-align:center;padding:0}
+  .js .pan{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s cubic-bezier(.3,.7,.2,1)}
+  .js .pan.in{opacity:1;transform:none}
   .stick{--aw:74vw;--ah:70svh}
   .w{font-size:25vw}
   .w.back{display:none}
@@ -223,3 +232,17 @@ footer p{margin:0 auto;color:var(--taupe)}
   .resa{grid-template-columns:1fr 1fr}
   .resa label:first-child{grid-column:1/-1}
 }
+
+/* Categorieknoppen (alleen mobiel zichtbaar) */
+.chips{display:flex;position:sticky;top:64px;z-index:5;gap:.5rem;overflow-x:auto;scrollbar-width:none;margin:0 -1rem 1.2rem;padding:.7rem 1rem;background:rgba(237,226,211,.94);backdrop-filter:blur(8px)}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;font:400 .92rem var(--sans);color:var(--espresso);background:transparent;border:1px solid var(--line);border-radius:999px;padding:.55rem 1rem;cursor:pointer}
+.chips button[aria-selected="true"]{background:var(--espresso);color:var(--cream);border-color:var(--espresso)}
+
+/* Vaste actiebalk (alleen mobiel) */
+.bar{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:.5rem .7rem calc(.5rem + env(safe-area-inset-bottom));background:rgba(248,242,234,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .35s}
+.bar.show{transform:none}
+.bar a{text-align:center;text-decoration:none;font:400 .92rem var(--sans);padding:.7rem .2rem;border-radius:999px;border:1px solid var(--line)}
+.bar a.main{background:var(--espresso);color:var(--cream);border-color:var(--espresso)}
+
+@media (min-width:801px){.chips,.bar{display:none}.carte-sub .m{display:none}}

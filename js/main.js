@@ -41,10 +41,20 @@ document.getElementById("resa").addEventListener("submit", e => {
     return `<div class="acc${i === 0 ? " open" : ""}"><div class="acc-pic" style="background-image:url(assets/photos/${PIC[i % PIC.length]});background-position:${POS[i % POS.length]}"></div><button class="acc-h" type="button" aria-expanded="${i === 0}" aria-controls="acc-${i}"><span>${c.name}</span></button><div class="acc-body" id="acc-${i}"><ul>${items}</ul></div></div>`;
   }).join("");
   const panels = [...root.querySelectorAll(".acc")];
-  panels.forEach(p => p.querySelector(".acc-h").addEventListener("click", () => {
+  root.insertAdjacentHTML("beforebegin", `<div class="chips" role="tablist" aria-label="Catégories">${MENU.map((c, i) => `<button type="button" role="tab" aria-selected="${i === 0}">${c.name}</button>`).join("")}</div>`);
+  const chips = [...root.parentNode.querySelectorAll(".chips button")];
+  function openPanel(p, fromChip) {
+    const k = panels.indexOf(p);
     panels.forEach(q => { const o = q === p; q.classList.toggle("open", o); q.querySelector(".acc-h").setAttribute("aria-expanded", o); });
+    chips.forEach((b, j) => b.setAttribute("aria-selected", j === k));
     p.querySelector(".acc-body").scrollTop = 0;
-  }));
+    if (fromChip) {
+      chips[k].scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+      if (root.getBoundingClientRect().top < 110) root.scrollIntoView({ block: "start", behavior: "smooth" });
+    }
+  }
+  panels.forEach(p => p.querySelector(".acc-h").addEventListener("click", () => openPanel(p, false)));
+  chips.forEach((b, j) => b.addEventListener("click", () => openPanel(panels[j], true)));
 })();
 
 // Hero: het raam opent zich bij het scrollen
@@ -115,8 +125,10 @@ document.getElementById("resa").addEventListener("submit", e => {
   const pans = [...track.children];
   const mq = window.matchMedia("(max-width:800px)");
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-  const ease = t => 1 - Math.pow(1 - t, 3);
   let dist = 0, ticking = false, mobile = null;
+  document.documentElement.classList.add("js");
+  const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.15 }) : null;
+  [...track.children].forEach(p => io ? io.observe(p) : p.classList.add("in"));
 
   function reset() {
     track.style.transform = ""; ghost.style.transform = "";
@@ -127,38 +139,18 @@ document.getElementById("resa").addEventListener("submit", e => {
     const m = mq.matches;
     if (m !== mobile) { mobile = m; reset(); }
     const vh = window.innerHeight;
-    if (mobile) {
-      sec.style.height = ((pans.length - 1) * 0.85 * vh + vh) + "px";
-    } else {
-      dist = Math.max(0, track.scrollWidth - window.innerWidth);
-      sec.style.height = dist + vh + "px";
-    }
+    if (mobile) { sec.style.height = ""; return; }
+    dist = Math.max(0, track.scrollWidth - window.innerWidth);
+    sec.style.height = dist + vh + "px";
     update();
   }
   function update() {
     ticking = false;
     const vw = window.innerWidth, vh = window.innerHeight;
+    if (mobile) return;
     const p = clamp(-sec.getBoundingClientRect().top / Math.max(1, sec.offsetHeight - vh));
     bar.style.transform = "scaleX(" + p + ")";
-    if (mobile) {
-      const steps = p * (pans.length - 1);
-      pans.forEach((el, j) => {
-        const cum = steps - j;
-        let y = 0, s = 1, o = 1;
-        if (cum < 0) {
-          const t = clamp(cum + 1);
-          y = (1 - ease(t)) * vh * (j === 1 ? 0.55 : 1.1);
-          if (j > 1 && t === 0) o = 0;
-        } else {
-          const t = clamp(cum);
-          y = -t * vh * 0.04; s = 1 - 0.07 * t; o = 1 - t;
-        }
-        el.style.transform = "translate(-50%,-50%) translate3d(0," + y + "px,0) scale(" + s + ")";
-        el.style.opacity = o;
-        el.style.zIndex = j + 1;
-        el.style.pointerEvents = (cum >= -0.05 && cum < 0.5) ? "auto" : "none";
-      });
-    } else {
+    {
       track.style.transform = "translate3d(" + -p * dist + "px,0,0)";
       ghost.style.transform = "translate3d(" + -p * dist * 0.35 + "px,-50%,0)";
       frames.forEach(f => {
@@ -173,4 +165,19 @@ document.getElementById("resa").addEventListener("submit", e => {
   window.addEventListener("load", measure);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
   measure();
+})();
+
+// Actiebalk (mobiel): verschijnt na de hero, verdwijnt bij het reserveringsformulier
+(function () {
+  const bar = document.getElementById("bar"), resa = document.getElementById("reserver");
+  if (!bar) return;
+  if (typeof WHATSAPP !== "undefined") document.getElementById("bar-wa").href = "https://wa.me/" + WHATSAPP;
+  let t = false;
+  const upd = () => {
+    t = false;
+    const r = resa.getBoundingClientRect();
+    bar.classList.toggle("show", window.scrollY > window.innerHeight * 1.2 && !(r.top < window.innerHeight * 0.7 && r.bottom > 0));
+  };
+  window.addEventListener("scroll", () => { if (!t) { t = true; requestAnimationFrame(upd); } }, { passive: true });
+  upd();
 })();
