@@ -14,7 +14,7 @@
 <body>
 
 <header class="top" id="top">
-  <a class="brand" href="#top" aria-label="L’Atelier by Sam — accueil">
+  <a class="brand" href="#accueil" aria-label="L’Atelier by Sam — accueil">
     <img src="assets/monogram.png" alt="" width="52" height="50">
   </a>
   <button class="burger" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
@@ -29,21 +29,36 @@
 
 <main>
 
-<section class="hero">
-  <div class="hero-text">
-    <img class="hero-logo" src="assets/logo.png" alt="L’Atelier by Sam — salon de thé, brunch" width="560" height="445">
-    <p class="lead">Un brunch soigné, un thé bien infusé, et le temps de s’asseoir.<br>À Agdal, Rabat.</p>
-    <div class="actions">
-      <a class="btn btn-solid" href="#reserver">Réserver une table</a>
-      <a class="btn btn-line" href="#carte">Voir la carte</a>
+<section class="reveal" id="accueil">
+  <h1 class="sr">L’Atelier by Sam — salon de thé et brunch à Agdal, Rabat</h1>
+  <div class="stick">
+    <p class="kicker">Salon de thé &amp; brunch · Agdal, Rabat</p>
+    <div class="word" aria-hidden="true">
+      <span class="w">Bru</span>
+      <figure class="gate">
+        <picture>
+          <source media="(max-width:800px)" srcset="assets/photos/hero-mobile.jpg">
+          <img src="assets/photos/hero-desktop.jpg" alt="Table de brunch dressée près d’une grande fenêtre" width="1376" height="768" fetchpriority="high">
+        </picture>
+        <div class="shade"></div>
+        <div class="gate-over">
+          <img class="gate-logo" src="assets/logo-light.png" alt="L’Atelier by Sam" width="300" height="238">
+          <p>Un brunch soigné, un thé bien infusé,<br>et le temps de s’asseoir.</p>
+          <div class="actions">
+            <a class="btn btn-light" href="#reserver">Réserver une table</a>
+            <a class="btn btn-ghost" href="#carte">Voir la carte</a>
+          </div>
+        </div>
+      </figure>
+      <span class="w">nch</span>
     </div>
+    <p class="hint">Faites défiler</p>
   </div>
-  <figure class="arch hero-arch"><img src="assets/photos/hero.svg" alt="Avocado toast et café" width="600" height="800"></figure>
 </section>
 
 <section class="atelier" id="atelier">
   <figure class="arch small">
-    <img src="assets/photos/the.svg" alt="Théière et tasses" width="600" height="800" loading="lazy">
+    <img src="assets/photos/table.jpg" alt="Table de brunch, fleurs et pain" width="608" height="810" loading="lazy">
   </figure>
   <div class="atelier-text">
     <h2>Une table pensée<br>comme un atelier</h2>
@@ -51,7 +66,7 @@
     <p>Brunch sucré ou salé, pâtisseries, boissons chaudes et froides : une carte courte, faite maison.</p>
   </div>
   <figure class="arch small offset">
-    <img src="assets/photos/bowl.svg" alt="Granola bowl aux fruits rouges" width="600" height="800" loading="lazy">
+    <video src="assets/photos/tea.mp4" poster="assets/photos/tea-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Thé à la menthe versé dans un verre"></video>
   </figure>
 </section>
 
@@ -62,10 +77,10 @@
 </section>
 
 <section class="galerie" id="galerie">
-  <div class="g g1 arch"><img src="assets/photos/croissant.svg" alt="Croissant aux fruits rouges" width="600" height="800" loading="lazy"></div>
-  <div class="g g2"><img src="assets/photos/latte.svg" alt="Iced latté" width="600" height="800" loading="lazy"></div>
-  <div class="g g3"><img src="assets/photos/pancakes.svg" alt="Pancakes aux fruits rouges" width="600" height="800" loading="lazy"></div>
-  <div class="g g4 arch"><img src="assets/photos/hero.svg" alt="Avocado toast" width="600" height="800" loading="lazy"></div>
+  <div class="g g1 arch"><img src="assets/photos/toast.jpg" alt="Avocado toast et fleurs" width="600" height="800" loading="lazy"></div>
+  <div class="g g2"><img src="assets/photos/latte.jpg" alt="Latte art" width="600" height="800" loading="lazy"></div>
+  <div class="g g3"><img src="assets/photos/doorway.jpg" alt="Croissant, café et patio" width="600" height="800" loading="lazy"></div>
+  <div class="g g4 arch"><img src="assets/photos/tea.jpg" alt="Théière en verre à la menthe" width="600" height="800" loading="lazy"></div>
 </section>
 
 <section class="infos" id="infos">

@@ -47,3 +47,50 @@ document.getElementById("resa").addEventListener("submit", e => {
   });
   show(0);
 })();
+
+// Hero: de boog opent zich bij het scrollen
+(function () {
+  const reveal = document.getElementById("accueil");
+  const gate = reveal.querySelector(".gate");
+  const pic = gate.querySelector("picture img");
+  const shade = gate.querySelector(".shade");
+  const over = gate.querySelector(".gate-over");
+  const words = reveal.querySelectorAll(".w");
+  const kicker = reveal.querySelector(".kicker");
+  const hint = reveal.querySelector(".hint");
+  const mq = window.matchMedia("(max-width:800px)");
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const travel = reveal.offsetHeight - vh;
+    const p = clamp(-reveal.getBoundingClientRect().top / (travel * 0.85));
+    const e = ease(p);
+    const mobile = mq.matches;
+    const w0 = mobile ? vw * 0.64 : Math.min(vw * 0.30, 380);
+    const h0 = mobile ? vh * 0.56 : vh * 0.68;
+    const w = lerp(w0, vw, e), h = lerp(h0, vh, e);
+    gate.style.width = w + "px";
+    gate.style.height = h + "px";
+    const r = (1 - e) * w / 2;
+    gate.style.borderRadius = r + "px " + r + "px 0 0";
+    if (mobile) gate.style.top = lerp(vh * 0.34, 0, e) + "px";
+    else { gate.style.top = ""; gate.style.margin = "0 " + lerp(-vw * 0.016, 0, e) + "px"; }
+    pic.style.transform = "scale(" + lerp(1.12, 1, e) + ")";
+    pic.style.objectPosition = (mobile ? 50 : lerp(26, 50, e)) + "% " + (mobile ? 50 : lerp(70, 50, e)) + "%";
+    const fade = clamp(1 - p / 0.45);
+    words.forEach(el => (el.style.opacity = fade));
+    kicker.style.opacity = fade; hint.style.opacity = fade;
+    const t = clamp((p - 0.6) / 0.3);
+    shade.style.opacity = t; over.style.opacity = t;
+    over.style.pointerEvents = t > 0.5 ? "auto" : "none";
+  }
+  const req = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  window.addEventListener("scroll", req, { passive: true });
+  window.addEventListener("resize", req);
+  update();
+})();
