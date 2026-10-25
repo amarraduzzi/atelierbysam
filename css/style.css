@@ -157,9 +157,10 @@ p{max-width:58ch}
 .gp figcaption{text-align:center;font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--olive);margin-top:.8rem}
 
 /* Réserver + infos */
-.reserver{background:var(--olive);color:var(--cream);padding:6rem clamp(1.2rem,6vw,6rem)}
+.reserver{background:var(--mist);color:var(--espresso);padding:6rem clamp(1.2rem,6vw,6rem)}
 .resa-wrap{display:grid;grid-template-columns:minmax(380px,520px) 1fr;gap:clamp(3rem,8vw,7rem);align-items:center;max-width:1150px;margin:0 auto}
-.resa-card{background:var(--cream);color:var(--espresso);border-radius:260px 260px 28px 28px;overflow:hidden;text-align:left;box-shadow:0 40px 80px -40px rgba(0,0,0,.5)}
+.resa-stage{background:var(--olive);border-radius:300px 300px 44px 44px;padding:22px}
+.resa-card{background:var(--cream);color:var(--espresso);border-radius:260px 260px 28px 28px;overflow:hidden;text-align:left;}
 .resa-photo{position:relative;height:270px;background:var(--sand)}
 .resa-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
 .resa-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(247,243,233,0) 62%,var(--cream) 100%)}
@@ -193,14 +194,14 @@ p{max-width:58ch}
 .recap.ok{color:var(--olive)}
 .recap.warn{color:var(--plum)}
 .resa-card .btn{display:block;width:100%;text-align:center}
-.resa-info h2{color:var(--cream);font-size:clamp(2.2rem,4vw,3rem)}
-.resa-info h3{color:var(--pistache-l);font-size:1.5rem;margin:1.8rem 0 .4rem}
-.resa-info p{color:#DDE2C4;margin:0 0 .3rem}
+.resa-info h2{color:var(--olive);font-size:clamp(2.2rem,4vw,3rem)}
+.resa-info h3{color:var(--taupe);font-size:1.5rem;margin:1.8rem 0 .4rem}
+.resa-info p{color:var(--espresso);margin:0 0 .3rem}
 .resa-info .lead{font-size:1.15rem;margin-top:.4rem}
 .pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
-.pill{text-decoration:none;color:var(--cream);border:1px solid rgba(221,226,196,.55);border-radius:999px;padding:.65rem 1.3rem;font-size:.95rem;transition:background .2s,color .2s}
-.pill:hover{background:var(--cream);color:var(--olive)}
-.resa-visual{width:min(250px,60%);aspect-ratio:3/4;margin-top:2.8rem;border-radius:999px 999px 0 0;overflow:hidden;border:1px solid rgba(221,226,196,.45);padding:7px}
+.pill{text-decoration:none;color:var(--olive);border:1px solid var(--olive);border-radius:999px;padding:.65rem 1.3rem;font-size:.95rem;transition:background .2s,color .2s}
+.pill:hover{background:var(--olive);color:var(--cream)}
+.resa-visual{width:min(250px,60%);aspect-ratio:3/4;margin-top:2.8rem;border-radius:999px 999px 0 0;overflow:hidden;border:1px solid var(--olive);padding:7px}
 .resa-visual img{width:100%;height:100%;object-fit:cover;border-radius:999px 999px 0 0}
 
 /* Footer */
@@ -269,7 +270,8 @@ footer p{margin:0 auto;color:var(--taupe)}
   .gp-mid{width:min(84vw,350px)}
   .reserver{padding:4rem 1rem}
   .resa-wrap{grid-template-columns:1fr;gap:3rem}
-  .resa-card{border-radius:170px 170px 24px 24px}
+  .resa-stage{border-radius:190px 190px 30px 30px;padding:12px}
+  .resa-card{border-radius:178px 178px 20px 20px}
   .resa-photo{height:200px}
   .resa-body{padding:0 1.2rem 2rem}
   .resa-card h2{font-size:1.75rem}
