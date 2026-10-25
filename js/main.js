@@ -16,15 +16,69 @@ nav.querySelectorAll("a").forEach(a =>
 
 document.getElementById("y").textContent = new Date().getFullYear();
 
-document.getElementById("resa").addEventListener("submit", e => {
-  e.preventDefault();
-  const f = new FormData(e.target);
-  const msg =
-    `Bonjour, je souhaite réserver chez L’Atelier by Sam.\n` +
-    `Nom : ${f.get("nom")}\nDate : ${f.get("date")}\nHeure : ${f.get("heure")}\n` +
-    `Personnes : ${f.get("pers")}`;
-  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
-});
+// Reserveren: knoppen voor personen, datum en uur
+(function () {
+  const form = document.getElementById("resa");
+  const persEl = document.getElementById("pers"), daysEl = document.getElementById("days");
+  const slotsEl = document.getElementById("slots"), more = document.getElementById("date-more");
+  const recap = document.getElementById("recap");
+  const SLOTS = []; for (let h = 10; h <= 20; h++) { SLOTS.push([h, 0]); SLOTS.push([h, 30]); }
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const fr = (d, o) => d.toLocaleDateString("fr-FR", o);
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+  const label = ([h, m]) => `${h}h${m ? "30" : "00"}`;
+  const state = { pers: "2", date: iso(new Date()), time: "" };
+
+  const mk = (txt, val, on) => { const b = document.createElement("button"); b.type = "button"; b.textContent = txt; b.dataset.v = val; b.setAttribute("aria-pressed", on); return b; };
+  const setOn = (box, val) => box.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === val));
+
+  ["1", "2", "3", "4", "5", "6", "7+"].forEach(v => persEl.appendChild(mk(v, v, v === state.pers)));
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  for (let i = 0; i < 6; i++) {
+    const d = new Date(today); d.setDate(d.getDate() + i);
+    const t = i === 0 ? "Aujourd’hui" : i === 1 ? "Demain" : cap(fr(d, { weekday: "short", day: "numeric" }).replace(".", ""));
+    daysEl.appendChild(mk(t, iso(d), i === 0));
+  }
+  daysEl.appendChild(mk("Autre date", "other", false));
+  more.min = iso(today);
+
+  function drawSlots() {
+    const now = new Date(), isToday = state.date === iso(now);
+    slotsEl.innerHTML = "";
+    SLOTS.forEach(s => {
+      const past = isToday && (s[0] * 60 + s[1]) < (now.getHours() * 60 + now.getMinutes() + 30);
+      const b = mk(label(s), label(s), state.time === label(s));
+      b.disabled = past; if (past && state.time === label(s)) state.time = "";
+      slotsEl.appendChild(b);
+    });
+  }
+  function describe() {
+    const d = new Date(state.date + "T12:00:00");
+    const p = state.pers === "1" ? "1 personne" : state.pers + " personnes";
+    return `${cap(fr(d, { weekday: "long", day: "numeric", month: "long" }))} · ${state.time || "…"} · ${p}`;
+  }
+  function draw() { recap.classList.remove("warn"); recap.textContent = state.time ? describe() : "Choisissez une heure"; }
+
+  persEl.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.pers = b.dataset.v; setOn(persEl, state.pers); draw(); });
+  daysEl.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.v === "other") { more.hidden = false; setOn(daysEl, "other"); more.focus(); if (more.showPicker) try { more.showPicker(); } catch (_) {} return; }
+    more.hidden = true; state.date = b.dataset.v; setOn(daysEl, state.date); drawSlots(); draw();
+  });
+  more.addEventListener("change", () => { if (more.value) { state.date = more.value; drawSlots(); draw(); } });
+  slotsEl.addEventListener("click", e => { const b = e.target.closest("button"); if (!b || b.disabled) return; state.time = b.dataset.v; setOn(slotsEl, state.time); draw(); });
+  drawSlots(); draw();
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const f = new FormData(form), nom = (f.get("nom") || "").trim();
+    if (!state.time) { recap.textContent = "Choisissez une heure"; recap.classList.add("warn"); slotsEl.scrollIntoView({ block: "center", behavior: "smooth" }); return; }
+    if (!nom) { form.nom.focus(); return; }
+    const d = new Date(state.date + "T12:00:00");
+    const msg = `Bonjour, je souhaite réserver chez L’Atelier by Sam.\nNom : ${nom}\nDate : ${cap(fr(d, { weekday: "long", day: "numeric", month: "long" }))}\nHeure : ${state.time}\nPersonnes : ${state.pers}` + (f.get("note") ? `\nRemarque : ${f.get("note")}` : "");
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+  });
+})();
 
 // Menu: harmonica van arches, gevuld vanuit js/menu.js
 (function () {

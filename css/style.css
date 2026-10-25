@@ -150,26 +150,40 @@ p{max-width:58ch}
 }
 
 /* Galerie */
-.galerie{background:var(--mist);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.8rem,2vw,1.6rem);padding:6rem clamp(1.2rem,6vw,6rem)}
-.g{height:380px}
-.g2,.g4{margin-top:3rem}.g2,.g3{overflow:hidden}
-.g2,.g3{border-radius:4px}
+.galerie{background:var(--mist);display:grid;grid-template-columns:1fr 1.25fr 1fr;align-items:end;gap:clamp(1rem,3vw,2.6rem);max-width:none;padding:6rem clamp(1.2rem,12vw,14rem)}
+.gp{margin:0}
+.gp-arch{aspect-ratio:3/4;border-radius:999px 999px 0 0;overflow:hidden;background:var(--sand);box-shadow:0 30px 60px -35px rgba(58,45,36,.5)}
+.gp-arch img{width:100%;height:100%;object-fit:cover}
+.gp figcaption{text-align:center;font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--olive);margin-top:.8rem}
 
-/* Infos */
-.infos{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:3rem;padding:4rem clamp(1.2rem,6vw,6rem) 6rem;border-top:1px solid var(--line);margin:0 clamp(1.2rem,6vw,6rem);padding-inline:0}
-.infos h2{font-size:2.6rem}
-.infos a{text-decoration:none;border-bottom:1px solid var(--line)}
-
-/* Réserver */
-.reserver{background:var(--olive);color:var(--cream);padding:6rem clamp(1.2rem,6vw,6rem);text-align:center}
-.reserver h2{color:var(--cream)}
-.reserver p{margin:0 auto 2.5rem;color:#DDE2C4}
-.resa{display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr;gap:1.2rem;max-width:1000px;margin:0 auto;text-align:left;align-items:end}
-.resa label{display:flex;flex-direction:column;font-size:.85rem;letter-spacing:.06em;color:#DDE2C4;gap:.4rem}
-.resa input{background:transparent;border:0;border-bottom:1px solid #9AA46E;color:var(--cream);font:300 1.1rem var(--sans);padding:.5rem 0;border-radius:0;color-scheme:dark}
-.resa input:focus{outline:none;border-color:var(--cream)}
-.resa .btn{grid-column:1/-1;justify-self:center;margin-top:1.5rem;background:var(--cream);color:var(--espresso);border-color:var(--cream)}
-.resa .btn:hover{background:transparent;color:var(--cream);border-color:var(--cream)}
+/* Réserver + infos */
+.reserver{background:var(--olive);color:var(--cream);padding:6rem clamp(1.2rem,6vw,6rem)}
+.resa-wrap{display:grid;grid-template-columns:minmax(380px,520px) 1fr;gap:clamp(3rem,8vw,7rem);align-items:center;max-width:1150px;margin:0 auto}
+.resa-card{background:var(--cream);color:var(--espresso);border-radius:260px 260px 28px 28px;padding:5.5rem clamp(1.4rem,4vw,3rem) 2.6rem;text-align:left;box-shadow:0 40px 80px -40px rgba(0,0,0,.45)}
+.resa-card h2{text-align:center;font-size:2.3rem;color:var(--olive);margin-bottom:1.6rem}
+.resa-card fieldset{border:0;margin:0 0 1.3rem;min-width:0}
+.resa-card legend{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--olive);margin-bottom:.55rem;padding:0}
+.chipset{display:flex;flex-wrap:wrap;gap:.45rem}
+.chipset button{font:400 .95rem var(--sans);color:var(--espresso);background:transparent;border:1px solid var(--line);border-radius:999px;padding:.5rem .95rem;cursor:pointer;transition:background .2s,color .2s}
+.chipset button:hover:not(:disabled){border-color:var(--olive)}
+.chipset button[aria-pressed="true"]{background:var(--olive);color:var(--cream);border-color:var(--olive)}
+.chipset button:disabled{opacity:.3;cursor:not-allowed;text-decoration:line-through}
+.slots button{min-width:4.3rem;padding:.5rem .4rem;text-align:center}
+.date-more{margin-top:.7rem;font:300 1rem var(--sans);color:var(--espresso);background:transparent;border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem}
+.fld{display:flex;flex-direction:column;gap:.15rem;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--olive);margin-bottom:1rem}
+.fld small{text-transform:none;letter-spacing:0;opacity:.7}
+.fld input{background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--espresso);font:300 1.1rem var(--sans);letter-spacing:0;text-transform:none;padding:.5rem 0;border-radius:0}
+.fld input:focus{outline:none;border-color:var(--olive)}
+.recap{max-width:none;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--taupe);margin:1.2rem 0 1rem}
+.recap.warn{color:var(--plum)}
+.resa-card .btn{display:block;width:100%;text-align:center}
+.resa-info h2{color:var(--cream);font-size:clamp(2.2rem,4vw,3rem)}
+.resa-info h3{color:var(--pistache-l);font-size:1.5rem;margin:1.8rem 0 .4rem}
+.resa-info p{color:#DDE2C4;margin:0 0 .3rem}
+.resa-info .lead{font-size:1.15rem;margin-top:.4rem}
+.pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
+.pill{text-decoration:none;color:var(--cream);border:1px solid rgba(221,226,196,.55);border-radius:999px;padding:.65rem 1.3rem;font-size:.95rem;transition:background .2s,color .2s}
+.pill:hover{background:var(--cream);color:var(--olive)}
 
 /* Footer */
 footer{text-align:center;padding:4rem 1.2rem 3rem}
@@ -231,11 +245,15 @@ footer p{margin:0 auto;color:var(--taupe)}
   .reveal{height:240svh}
   .badge{width:100px;height:100px;left:calc(50% + var(--aw)/2 - 66px);top:calc(50% + var(--ah)/2 - 70px)}
   .badge img{width:34px}
-  .infos{grid-template-columns:1fr}.menu-list{columns:1}
-  .galerie{grid-template-columns:1fr 1fr}
-  .g{height:260px}.g2,.g4{margin-top:0}
-  .resa{grid-template-columns:1fr 1fr}
-  .resa label:first-child{grid-column:1/-1}
+  .menu-list{columns:1}
+  .galerie{grid-template-columns:1fr;justify-items:center;gap:2.4rem;padding:4rem 1.4rem}
+  .gp{width:min(78vw,320px)}
+  .gp-mid{width:min(84vw,350px)}
+  .reserver{padding:4rem 1rem}
+  .resa-wrap{grid-template-columns:1fr;gap:3rem}
+  .resa-card{border-radius:170px 170px 24px 24px;padding:5.5rem 1.2rem 2rem}
+  .resa-card h2{font-size:1.75rem}
+  .slots button{min-width:3.9rem}
 }
 
 /* Categorieknoppen (alleen mobiel zichtbaar) */

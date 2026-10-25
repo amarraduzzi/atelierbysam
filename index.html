@@ -104,38 +104,36 @@
   <div class="acc-row" id="acc"></div>
 </section>
 
-<section class="galerie" id="galerie">
-  <div class="g g1 arch"><img src="assets/photos/toast.jpg" alt="Avocado toast et fleurs" width="600" height="800" loading="lazy"></div>
-  <div class="g g2"><img src="assets/photos/latte.jpg" alt="Latte art" width="600" height="800" loading="lazy"></div>
-  <div class="g g3"><img src="assets/photos/doorway.jpg" alt="Croissant, café et patio" width="600" height="800" loading="lazy"></div>
-  <div class="g g4 arch"><img src="assets/photos/tea.jpg" alt="Théière en verre à la menthe" width="600" height="800" loading="lazy"></div>
-</section>
-
-<section class="infos" id="infos">
-  <div>
-    <h2>Venir chez Sam</h2>
-    <p>Agdal, Rabat<br>Adresse exacte à ajouter</p>
-  </div>
-  <div>
-    <h3>Horaires</h3>
-    <p>Tous les jours<br>10h00 – 21h00</p>
-  </div>
-  <div>
-    <h3>Contact</h3>
-    <p><a href="tel:+212600000000" data-edit>+212 6 00 00 00 00</a><br><a href="https://instagram.com/" data-edit>Instagram</a></p>
-  </div>
+<section class="galerie" id="galerie" aria-label="Galerie">
+  <figure class="gp"><div class="gp-arch"><img src="assets/photos/menu-tea-chaudes.jpg" alt="Thé à la menthe et expresso sur une table en lin" width="896" height="1200" loading="lazy"></div><figcaption>Le thé</figcaption></figure>
+  <figure class="gp gp-mid"><div class="gp-arch"><img src="assets/photos/menu-sucres.jpg" alt="Pancakes, croissant et granola" width="896" height="1200" loading="lazy"></div><figcaption>Le brunch</figcaption></figure>
+  <figure class="gp"><div class="gp-arch"><img src="assets/photos/menu-froides.jpg" alt="Iced latté, matcha et limonade" width="896" height="1200" loading="lazy"></div><figcaption>Les boissons</figcaption></figure>
 </section>
 
 <section class="reserver" id="reserver">
-  <h2>Réserver une table</h2>
-  <p>Indiquez le jour, l’heure et le nombre de personnes. Nous vous confirmons sur WhatsApp.</p>
-  <form id="resa" class="resa">
-    <label>Nom<input name="nom" required autocomplete="name"></label>
-    <label>Date<input name="date" type="date" required></label>
-    <label>Heure<input name="heure" type="time" required></label>
-    <label>Personnes<input name="pers" type="number" min="1" max="20" value="2" required></label>
-    <button class="btn btn-solid" type="submit">Envoyer sur WhatsApp</button>
-  </form>
+  <div class="resa-wrap">
+    <form id="resa" class="resa-card" novalidate>
+      <h2>Réserver une table</h2>
+      <fieldset><legend>Personnes</legend><div class="chipset" id="pers"></div></fieldset>
+      <fieldset><legend>Date</legend><div class="chipset" id="days"></div><input type="date" id="date-more" class="date-more" aria-label="Autre date" hidden></fieldset>
+      <fieldset><legend>Heure</legend><div class="chipset slots" id="slots"></div></fieldset>
+      <label class="fld">Nom<input name="nom" required autocomplete="name" placeholder="Votre nom"></label>
+      <label class="fld">Remarque <small>(facultatif)</small><input name="note" placeholder="Allergie, anniversaire, chaise bébé…"></label>
+      <p class="recap" id="recap" aria-live="polite">Choisissez une heure</p>
+      <button class="btn btn-solid" type="submit">Confirmer sur WhatsApp</button>
+    </form>
+    <div class="resa-info" id="infos">
+      <h2>Venir chez Sam</h2>
+      <p class="lead">Agdal, Rabat<br><span data-edit>Adresse exacte à ajouter</span></p>
+      <h3>Horaires</h3>
+      <p>Tous les jours<br>10h00 – 21h00</p>
+      <div class="pills">
+        <a class="pill" href="tel:+212600000000" data-edit>Appeler</a>
+        <a class="pill" href="https://www.google.com/maps/search/?api=1&query=L%27Atelier+by+Sam+Agdal+Rabat" target="_blank" rel="noopener">Itinéraire</a>
+        <a class="pill" href="https://instagram.com/" target="_blank" rel="noopener" data-edit>Instagram</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 </main>
