@@ -207,6 +207,7 @@ p{max-width:58ch}
 /* Footer */
 footer{text-align:center;padding:4rem 1.2rem 3rem;background:var(--plum);color:var(--cream)}
 footer img{margin:0 auto 1rem;width:170px}
+footer img.spr{width:80px;margin-bottom:1.4rem}
 footer p{margin:0 auto;color:var(--sand)}
 .small{font-size:.85rem;margin-top:.4rem}
 
@@ -304,3 +305,13 @@ footer p{margin:0 auto;color:var(--sand)}
 
 /* Kaart: zoete categorie in prune */
 .acc:nth-child(5) .acc-pic::after{background:linear-gradient(180deg,rgba(122,51,72,.25),rgba(122,51,72,.72))}
+
+/* Decoratie: pistachetakjes, discreet */
+.spr{display:block;width:100px;height:auto;margin:0 auto .5rem}
+.spr-l{margin:0 0 -.9rem;width:84px;grid-column:1/-1}
+.galerie{position:relative}
+@media (min-width:1000px){
+  .galerie::before,.galerie::after{content:"";position:absolute;bottom:9.5rem;width:52px;height:210px;background:url(../assets/deco/tak.svg) center bottom/contain no-repeat;opacity:.85;pointer-events:none}
+  .galerie::before{left:calc(clamp(1.2rem,12vw,14rem) - 82px)}
+  .galerie::after{right:calc(clamp(1.2rem,12vw,14rem) - 82px);transform:scaleX(-1)}
+}
