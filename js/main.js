@@ -7,9 +7,9 @@ const WHATSAPP = "212600000000";
 // Laat url of key leeg: dan blijft het formulier via WhatsApp werken.
 const SYSTEEM = {
   url: "https://ntpeocxdpjgonexvwbln.supabase.co",
-  key: "",                 // sb_publishable_...
-  slug: "",                // slug van de zaak in Amplify, bv. atelier-by-sam
-  menuUrl: "",             // adres van de gastenpagina, bv. https://menu.jouwdomein.com (voor de link "Annuleren")
+  key: "sb_publishable_n4ddG8cerDkSTZmQC8o71Q_G6KAFZlg",
+  slug: "l-atelier-by-sam",
+  menuUrl: "https://menu.amplifygrowthstudio.com",
   tz: "Africa/Casablanca"
 };
 
