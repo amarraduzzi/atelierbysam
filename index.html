@@ -134,7 +134,7 @@
     <div class="resa-stage"><form id="resa" class="resa-card" novalidate>
       <header class="resa-head">
         <h2>Réserver une table</h2>
-        <p class="resa-sub">Choisissez, puis confirmez sur WhatsApp.</p>
+        <p class="resa-sub">Choisissez votre table, nous nous occupons du reste.</p>
       </header>
       <div class="resa-grid">
         <div class="resa-col">
@@ -145,12 +145,15 @@
         <div class="resa-col">
           <div class="resa-photo"><img src="assets/photos/reserver.jpg" alt="Table dressée chez L’Atelier by Sam" width="700" height="933" loading="lazy"></div>
           <label class="fld">Nom<input name="nom" required autocomplete="name" placeholder="Votre nom"></label>
+          <label class="fld">Téléphone <small>(WhatsApp)</small><input name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 00 00 00 00"></label>
           <label class="fld">Remarque <small>(facultatif)</small><input name="note" placeholder="Allergie, anniversaire, chaise bébé…"></label>
           <p class="recap" id="recap" aria-live="polite">Choisissez une heure</p>
-          <button class="btn btn-solid" type="submit">Confirmer sur WhatsApp</button>
+          <p class="resa-err" id="resa-err" role="alert" hidden></p>
+          <button class="btn btn-solid" id="resa-btn" type="submit">Réserver</button>
         </div>
       </div>
-    </form></div>
+    </form>
+    <div class="resa-done" id="resa-done" hidden aria-live="polite"></div></div>
     <div class="resa-info" id="infos">
       <img class="spr spr-l" src="assets/deco/noten.svg" alt="" aria-hidden="true" width="100" height="37">
       <h2>Venir chez Sam</h2>

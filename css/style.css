@@ -353,3 +353,13 @@ footer p{margin:0 auto;color:var(--sand)}
 .h-end .actions{justify-content:center}
 @media (max-width:800px){.h-hero{padding:7.5rem 1.4rem 3rem}.h-wide .gp-arch{border-radius:140px 140px 0 0}}
 .h-hero .eyebrow{margin-inline:auto}
+
+/* Reservering: foutmelding en bevestiging */
+.resa-err{color:#9b2c2c;font-size:.95rem;margin:0 0 .8rem}
+.resa-done{background:var(--cream);color:var(--espresso);border-radius:50% 50% 28px 28px / 130px 130px 28px 28px;padding:4rem 1.5rem 2.5rem;text-align:center}
+.resa-done h3{font-size:2rem;color:var(--olive);margin:0 0 .6rem}
+.resa-done p{max-width:none;margin:0 0 1rem}
+.resa-done .done-when{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--plum)}
+.resa-done .btn{display:inline-block;width:auto}
+.linklike{background:none;border:0;padding:0;font:inherit;color:var(--taupe);text-decoration:underline;cursor:pointer}
+.resa-card[hidden],.resa-done[hidden]{display:none}
