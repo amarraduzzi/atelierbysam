@@ -363,3 +363,6 @@ footer p{margin:0 auto;color:var(--sand)}
 .resa-done .btn{display:inline-block;width:auto}
 .linklike{background:none;border:0;padding:0;font:inherit;color:var(--taupe);text-decoration:underline;cursor:pointer}
 .resa-card[hidden],.resa-done[hidden]{display:none}
+
+/* Menu: opmerking onder de categorietitel */
+.acc-note{font-family:var(--serif);font-style:italic;color:var(--taupe);font-size:1rem;margin:.6rem 0 .2rem;max-width:none}

@@ -1,287 +1,443 @@
-// Menu: prijzen in MAD (getal, bv. 45). Leeg = geen prijs getoond. Fictieve prijzen, pas aan.
-// Prijs staat bij het gerecht, of bij elke maat/variant.
+// Menu: prijzen in MAD (getal, bv. 45). Leeg = geen prijs getoond.
+// Prijs staat bij het gerecht, of bij elke maat/variant (sizes).
+// Per categorie: pic/pos = foto en uitsnede, note = opmerking onder de titel.
 const MENU = [
  {
-  "name": "Boissons chaudes",
+  "name": "Délices Salés",
   "items": [
    {
-    "name": "Thé à la menthe",
+    "name": "Toast Avocado",
     "desc": "",
     "sizes": [],
-    "price": "20"
+    "price": ""
    },
    {
-    "name": "Infusion",
+    "name": "Toast César",
     "desc": "",
     "sizes": [],
-    "price": "25"
+    "price": ""
    },
    {
-    "name": "Expresso",
+    "name": "Chèvre Chaud",
     "desc": "",
     "sizes": [],
-    "price": "18"
+    "price": ""
    },
    {
-    "name": "Allongé",
+    "name": "Œuf Benedict",
     "desc": "",
     "sizes": [],
-    "price": "20"
+    "price": ""
    },
    {
-    "name": "Café au lait",
+    "name": "Chic Salmon",
     "desc": "",
     "sizes": [],
-    "price": "25"
+    "price": ""
+   },
+   {
+    "name": "Burger Kifkif",
+    "desc": "Crispy Chicken / Effiloché. Servi avec ses frites de patate douce",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Frenchy Glam",
+    "desc": "Crispy Chicken / Effiloché. Servi avec ses frites de patate douce",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Omelette",
+    "desc": "Au choix : Soufflé au fromage / Œuf au plat / Lbed au Matcha",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Salade César",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Salade Buratta",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   }
+  ],
+  "pic": "menu-sales.jpg",
+  "pos": "40% 73%",
+  "note": "Chaque plat est servi avec un accompagnement salade."
+ },
+ {
+  "name": "Délices Sucrés",
+  "items": [
+   {
+    "name": "Pancake ou French Toast x2 – Fruits Rouges",
+    "desc": "Goût au choix",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Pancake ou French Toast x2 – Banane Nutella",
+    "desc": "Goût au choix",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Pancake ou French Toast x2 – Pistache",
+    "desc": "Goût au choix",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Pancake ou French Toast x2 – Pistache Kunefe",
+    "desc": "Goût au choix",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Granola Bowl – Fruits Rouges",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Granola Bowl – Exotique",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Pain au chocolat",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Croissant",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Pain suisse",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Pâtisserie et cake du jour",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   }
+  ],
+  "pic": "menu-sucres.jpg",
+  "pos": "52% 67%"
+ },
+ {
+  "name": "Cafés & Boissons chaudes",
+  "items": [
+   {
+    "name": "Espresso",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Américano",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Latte",
+    "desc": "",
+    "sizes": [],
+    "price": ""
    },
    {
     "name": "Cappuccino",
     "desc": "",
     "sizes": [],
-    "price": "30"
+    "price": ""
    },
    {
-    "name": "Latté",
+    "name": "Café Viennois",
     "desc": "",
     "sizes": [],
-    "price": "32"
+    "price": ""
+   },
+   {
+    "name": "Caramel Macchiato",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Chocolat Viennois",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Chocolat Chaud",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Thé marocain",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Infusion",
+    "desc": "",
+    "sizes": [],
+    "price": ""
    }
-  ]
+  ],
+  "pic": "menu-tea-chaudes.jpg",
+  "pos": "60% 61%"
  },
  {
-  "name": "Boissons froides",
+  "name": "Iced coffee & Frappés",
   "items": [
    {
-    "name": "Iced latté",
+    "name": "Iced latte",
     "desc": "",
     "sizes": [],
-    "price": "38"
+    "price": ""
    },
    {
-    "name": "Iced latté aromatisé",
-    "desc": "Caramel, vanille, etc.",
-    "sizes": [],
-    "price": "42"
-   },
-   {
-    "name": "Iced pistachio latté",
+    "name": "Iced latte vanille",
     "desc": "",
     "sizes": [],
-    "price": "48"
+    "price": ""
    },
    {
-    "name": "Matcha",
+    "name": "Iced latte caramel",
     "desc": "",
     "sizes": [],
-    "price": "45"
+    "price": ""
    },
    {
-    "name": "Matcha mangue ou fraise",
-    "desc": "Mangue ou fraise",
-    "sizes": [],
-    "price": "50"
-   },
-   {
-    "name": "Limonade",
+    "name": "Iced latte pistache",
     "desc": "",
     "sizes": [],
-    "price": "30"
+    "price": ""
    },
    {
-    "name": "Virgin Mojito",
+    "name": "Frappé caramel",
     "desc": "",
-    "sizes": [
-     {
-      "label": "Classique",
-      "price": "35",
-      "desc": ""
-     },
-     {
-      "label": "Fraise",
-      "price": "40",
-      "desc": ""
-     },
-     {
-      "label": "Fruits rouges",
-      "price": "40",
-      "desc": ""
-     },
-     {
-      "label": "Passion",
-      "price": "40",
-      "desc": ""
-     }
-    ]
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Frappé vanille",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Frappé chocolat",
+    "desc": "",
+    "sizes": [],
+    "price": ""
    }
-  ]
+  ],
+  "pic": "menu-froides.jpg",
+  "pos": "64% 58%"
+ },
+ {
+  "name": "Matcha & Ube",
+  "items": [
+   {
+    "name": "Matcha latte chaud",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Iced matcha latte",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Iced matcha latte Vanille",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Iced Strawberry matcha",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Iced Mango matcha",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Ube latte",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Iced Ube latte",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Iced Ube latte vanille",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   }
+  ],
+  "pic": "menu-froides.jpg",
+  "pos": "64% 58%"
+ },
+ {
+  "name": "Milkshakes",
+  "items": [
+   {
+    "name": "Milkshake Vanille",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Milkshake Fraise",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Milkshake Chocolat",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   }
+  ],
+  "pic": "menu-smoothies.jpg",
+  "pos": "55% 58%"
  },
  {
   "name": "Smoothies",
   "items": [
    {
-    "name": "Smoothie fraise banane",
-    "desc": "Fraise, banane",
+    "name": "Berry love",
+    "desc": "Fraise / Framboise / Banane",
     "sizes": [],
-    "price": "40"
+    "price": ""
    },
    {
-    "name": "Smoothie fruits rouges",
-    "desc": "Fruits rouges",
+    "name": "Sunshine",
+    "desc": "Mangue / ananas / orange",
     "sizes": [],
-    "price": "42"
+    "price": ""
    },
    {
-    "name": "Smoothie coco mangue",
-    "desc": "Coco, mangue",
+    "name": "Pink paradise",
+    "desc": "Fraise / Banane, lait de coco",
     "sizes": [],
-    "price": "42"
-   },
-   {
-    "name": "Smoothie coco ananas",
-    "desc": "Coco, ananas",
-    "sizes": [],
-    "price": "40"
+    "price": ""
    }
-  ]
+  ],
+  "pic": "menu-smoothies.jpg",
+  "pos": "55% 58%"
  },
  {
-  "name": "Délices salés",
+  "name": "Jus Frais",
   "items": [
    {
-    "name": "Avocado Toast",
-    "desc": "Pain céréales, cheese, houmous poivron, avocat, burrata, feta",
-    "sizes": [],
-    "price": "75"
-   },
-   {
-    "name": "Chic Salmon",
-    "desc": "Croissant, cheese, salade, saumon fumé, œuf poché",
-    "sizes": [],
-    "price": "95"
-   },
-   {
-    "name": "Burger Kif-Kif",
-    "desc": "Bun brioché (du jour), sauce blanche, salade, crispy poulet, cheddar, omelette",
-    "sizes": [],
-    "price": "85"
-   },
-   {
-    "name": "Eggs Bénédict",
+    "name": "Jus d’orange",
     "desc": "",
     "sizes": [],
-    "price": "80"
+    "price": ""
    },
    {
-    "name": "Frenchy Glam",
+    "name": "Jus de carotte",
     "desc": "",
     "sizes": [],
-    "price": "70"
+    "price": ""
    },
    {
-    "name": "Exotique Rolls",
+    "name": "Jus de citron",
     "desc": "",
     "sizes": [],
-    "price": "65"
+    "price": ""
    },
    {
-    "name": "Club sandwich César",
+    "name": "Jus de saison",
     "desc": "",
     "sizes": [],
-    "price": "70"
-   },
-   {
-    "name": "Chèvre chaud",
-    "desc": "",
-    "sizes": [],
-    "price": "65"
-   },
-   {
-    "name": "Œufs",
-    "desc": "",
-    "sizes": [
-     {
-      "label": "Au plat",
-      "price": "45",
-      "desc": "2 œufs"
-     },
-     {
-      "label": "Brouillés",
-      "price": "45",
-      "desc": "2 œufs"
-     },
-     {
-      "label": "Soufflé au fromage",
-      "price": "55",
-      "desc": ""
-     }
-    ]
+    "price": ""
    }
-  ]
+  ],
+  "pic": "menu-smoothies.jpg",
+  "pos": "55% 58%"
  },
  {
-  "name": "Délices sucrés",
+  "name": "Mocktails",
   "items": [
    {
-    "name": "French Toast",
-    "desc": "Brioche perdue, x2. Au choix : fruits rouges / banane Nutella / pistache + éclats / pistache kunéfe chocolat (voir Suppléments)",
-    "sizes": [],
-    "price": "60"
-   },
-   {
-    "name": "Pancakes",
-    "desc": "Au choix : fruits rouges / banane Nutella / pistache + éclats / pistache kunéfe chocolat",
-    "sizes": [
-     {
-      "label": "Petit (x3)",
-      "price": "50",
-      "desc": ""
-     },
-     {
-      "label": "Grand (x2)",
-      "price": "60",
-      "desc": ""
-     }
-    ]
-   },
-   {
-    "name": "Croissant gourmand",
-    "desc": "Crème pâtissière vanille, fruits rouges, éclats de pistache",
-    "sizes": [],
-    "price": "45"
-   },
-   {
-    "name": "Granola Bowl",
-    "desc": "Yaourt grec, fruits du jour, muesli, miel",
-    "sizes": [],
-    "price": "55"
-   },
-   {
-    "name": "Exotic Bowl",
+    "name": "Mojito Classique",
     "desc": "",
     "sizes": [],
-    "price": "60"
+    "price": ""
    },
    {
-    "name": "Viennoiseries",
+    "name": "Mojito Fruits rouges",
     "desc": "",
-    "sizes": [
-     {
-      "label": "Croissant",
-      "price": "12",
-      "desc": "Croissant"
-     },
-     {
-      "label": "Pain au chocolat",
-      "price": "14",
-      "desc": "Pain au chocolat"
-     },
-     {
-      "label": "Pain aux raisins",
-      "price": "14",
-      "desc": "Pain aux raisins"
-     }
-    ]
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Mojito Passion",
+    "desc": "",
+    "sizes": [],
+    "price": ""
    }
-  ]
+  ],
+  "pic": "menu-froides.jpg",
+  "pos": "64% 58%"
+ },
+ {
+  "name": "Alternatives végétales",
+  "items": [
+   {
+    "name": "Lait de coco",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Lait d’avoine",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   },
+   {
+    "name": "Lait d’amande",
+    "desc": "",
+    "sizes": [],
+    "price": ""
+   }
+  ],
+  "pic": "menu-tea-chaudes.jpg",
+  "pos": "60% 61%",
+  "note": "Supplément. Le lait classique est déjà inclus."
  }
 ];

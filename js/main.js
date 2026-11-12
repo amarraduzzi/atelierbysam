@@ -207,7 +207,7 @@ document.getElementById("y").textContent = new Date().getFullYear();
         ? `<ul class="sizes">${it.sizes.map(s => `<li><span>${s.label}${s.desc ? ` <small>${s.desc}</small>` : ""}</span>${price(s.price)}</li>`).join("")}</ul>` : "";
       return `<li><div class="row"><span class="dish">${it.name}</span>${price(it.price)}</div>${it.desc ? `<p class="desc">${it.desc}</p>` : ""}${sizes}</li>`;
     }).join("");
-    return `<div class="acc${i === 0 ? " open" : ""}"><div class="acc-pic" style="background-image:url(assets/photos/${PIC[i % PIC.length]});background-position:${POS[i % POS.length]}"></div><button class="acc-h" type="button" aria-expanded="${i === 0}" aria-controls="acc-${i}"><span>${c.name}</span></button><div class="acc-body" id="acc-${i}"><ul>${items}</ul></div></div>`;
+    return `<div class="acc${i === 0 ? " open" : ""}"><div class="acc-pic" style="background-image:url(assets/photos/${c.pic || PIC[i % PIC.length]});background-position:${c.pos || POS[i % POS.length]}"></div><button class="acc-h" type="button" aria-expanded="${i === 0}" aria-controls="acc-${i}"><span>${c.name}</span></button><div class="acc-body" id="acc-${i}">${c.note ? `<p class="acc-note">${c.note}</p>` : ""}<ul>${items}</ul></div></div>`;
   }).join("");
   const panels = [...root.querySelectorAll(".acc")];
   root.insertAdjacentHTML("beforebegin", `<div class="chips" role="tablist" aria-label="Catégories">${MENU.map((c, i) => `<button type="button" role="tab" aria-selected="${i === 0}">${c.name}</button>`).join("")}</div>`);
