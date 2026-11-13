@@ -1,5 +1,5 @@
 // ===== Instellingen: pas het WhatsApp-nummer aan (landcode, zonder + of spaties) =====
-const WHATSAPP = "212600000000";
+const WHATSAPP = "212664724055";
 
 // ===== Koppeling met het Amplify-kassasysteem (Supabase) =====
 // Vul in na het aanmaken van de zaak in het beheer. De sleutel is de openbare "publishable/anon" sleutel
