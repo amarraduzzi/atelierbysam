@@ -1,5 +1,5 @@
 // ===== Instellingen: pas het WhatsApp-nummer aan (landcode, zonder + of spaties) =====
-const WHATSAPP = "212664724055";
+const WHATSAPP = "212600000000";
 
 // ===== Koppeling met het Amplify-kassasysteem (Supabase) =====
 // Vul in na het aanmaken van de zaak in het beheer. De sleutel is de openbare "publishable/anon" sleutel
@@ -41,13 +41,14 @@ document.getElementById("y").textContent = new Date().getFullYear();
   const state = { pers: "2", date: "", time: "", slots: null };
   let maxParty = 8, daysAhead = 30, reqId = 0;
 
-  const fr = (d, o) => d.toLocaleDateString("fr-FR", o);
+  const T = (k, v) => I18N.t(k, v), LOC = I18N.locale;
+  const fr = (d, o) => d.toLocaleDateString(LOC, o);
   const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
   // dag als JJJJ-MM-DD in de tijdzone van de zaak
   const ymd = d => new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
-  const hm = iso => new Intl.DateTimeFormat("fr-FR", { timeZone: TZ, hour: "2-digit", minute: "2-digit" }).format(new Date(iso)).replace(":", "h");
+  const hm = iso => { const x = new Intl.DateTimeFormat(I18N.lang === "fr" ? "fr-FR" : "en-GB", { timeZone: TZ, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(new Date(iso)); return I18N.lang === "fr" ? x.replace(":", "h") : x; };
   const hourOf = iso => +new Intl.DateTimeFormat("en-GB", { timeZone: TZ, hour: "2-digit", hourCycle: "h23" }).format(new Date(iso));
-  const GROUPS = [["Matin & midi", 0, 14], ["Après-midi", 14, 18], ["Soir", 18, 24]];
+  const GROUPS = [[T("Matin & midi"), 0, 14], [T("Après-midi"), 14, 18], [T("Soir"), 18, 24]];
   state.date = ymd(new Date());
 
   // --- aanroepen naar het systeem (PostgREST RPC, alleen openbare functies) ---
@@ -65,13 +66,13 @@ document.getElementById("y").textContent = new Date().getFullYear();
     return data;
   }
   const ERR = {
-    slot_unavailable: "Ce créneau vient d’être pris. Choisissez une autre heure.",
-    party_too_big: "Pour un grand groupe, contactez-nous sur WhatsApp.",
-    customer_required: "Indiquez votre nom et un numéro de téléphone valide.",
-    rate_limited: "Vous avez déjà plusieurs réservations à venir. Contactez-nous sur WhatsApp.",
-    booking_off: "Les réservations en ligne sont fermées. Contactez-nous sur WhatsApp.",
-    network: "Pas de connexion. Réessayez ou contactez-nous sur WhatsApp.",
-    other: "Une erreur est survenue. Réessayez ou contactez-nous sur WhatsApp."
+    slot_unavailable: T("Ce créneau vient d’être pris. Choisissez une autre heure."),
+    party_too_big: T("Pour un grand groupe, contactez-nous sur WhatsApp."),
+    customer_required: T("Indiquez votre nom et un numéro de téléphone valide."),
+    rate_limited: T("Vous avez déjà plusieurs réservations à venir. Contactez-nous sur WhatsApp."),
+    booking_off: T("Les réservations en ligne sont fermées. Contactez-nous sur WhatsApp."),
+    network: T("Pas de connexion. Réessayez ou contactez-nous sur WhatsApp."),
+    other: T("Une erreur est survenue. Réessayez ou contactez-nous sur WhatsApp.")
   };
   const errText = e => ERR[e && e.message] || ERR.other;
 
@@ -90,11 +91,11 @@ document.getElementById("y").textContent = new Date().getFullYear();
     daysEl.innerHTML = "";
     for (let i = 0; i < 5; i++) {
       const d = new Date(today.getTime() + i * 86400000);
-      const top = i === 0 ? "Aujourd’hui" : i === 1 ? "Demain" : cap(fr(d, { weekday: "long", timeZone: TZ }));
-      const bottom = `${new Intl.DateTimeFormat("fr-FR", { timeZone: TZ, day: "numeric" }).format(d)} ${fr(d, { month: "short", timeZone: TZ }).replace(".", "")}`;
+      const top = i === 0 ? T("Aujourd’hui") : i === 1 ? T("Demain") : cap(fr(d, { weekday: "long", timeZone: TZ }));
+      const bottom = `${new Intl.DateTimeFormat(LOC, { timeZone: TZ, day: "numeric" }).format(d)} ${fr(d, { month: "short", timeZone: TZ }).replace(".", "")}`;
       daysEl.appendChild(mkDay(top, bottom, ymd(d), ymd(d) === state.date));
     }
-    daysEl.appendChild(mkDay("Autre date", "Calendrier", "other", false));
+    daysEl.appendChild(mkDay(T("Autre date"), T("Calendrier"), "other", false));
     more.min = ymd(today);
     more.max = ymd(new Date(today.getTime() + daysAhead * 86400000));
   }
@@ -108,7 +109,7 @@ document.getElementById("y").textContent = new Date().getFullYear();
   async function loadSlots() {
     const id = ++reqId;
     state.time = ""; state.slots = null; draw();
-    slotsEl.innerHTML = '<p class="slots-empty">Chargement…</p>';
+    slotsEl.innerHTML = `<p class="slots-empty">${T("Chargement…")}</p>`;
     let list;
     if (LIVE) {
       try { list = await rpc("booking_slots", { p_slug: SYSTEEM.slug, p_date: state.date, p_party: +state.pers }); }
@@ -121,7 +122,7 @@ document.getElementById("y").textContent = new Date().getFullYear();
   }
   function drawSlots() {
     slotsEl.innerHTML = "";
-    if (!state.slots.length) { slotsEl.innerHTML = '<p class="slots-empty">Plus de place ce jour-là. Choisissez un autre jour.</p>'; return; }
+    if (!state.slots.length) { slotsEl.innerHTML = `<p class="slots-empty">${T("Plus de place ce jour-là. Choisissez un autre jour.")}</p>`; return; }
     GROUPS.forEach(([name, from, to]) => {
       const list = state.slots.filter(s => { const h = hourOf(s); return h >= from && h < to; });
       if (!list.length) return;
@@ -134,10 +135,10 @@ document.getElementById("y").textContent = new Date().getFullYear();
   }
   function describe() {
     const d = new Date(state.date + "T12:00:00");
-    const p = state.pers === "1" ? "1 personne" : state.pers + " personnes";
+    const p = state.pers === "1" ? T("1 personne") : T("{n} personnes", { n: state.pers });
     return `${cap(fr(d, { weekday: "long", day: "numeric", month: "long" }))} · ${state.time ? hm(state.time) : "…"} · ${p}`;
   }
-  function draw() { recap.classList.remove("warn"); recap.classList.toggle("ok", !!state.time); recap.textContent = state.time ? describe() : "Choisissez une heure"; }
+  function draw() { recap.classList.remove("warn"); recap.classList.toggle("ok", !!state.time); recap.textContent = state.time ? describe() : T("Choisissez une heure"); }
 
   persEl.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.pers = b.dataset.v; setOn(persEl, state.pers); showErr(""); loadSlots(); });
   daysEl.addEventListener("click", e => {
@@ -149,17 +150,17 @@ document.getElementById("y").textContent = new Date().getFullYear();
   slotsEl.addEventListener("click", e => { const b = e.target.closest("button"); if (!b || b.disabled) return; state.time = b.dataset.v; setOn(slotsEl, state.time); draw(); });
 
   // --- versturen ---
-  const waMsg = (nom, tel, note) => `Bonjour, je souhaite réserver chez L’Atelier by Sam.\nNom : ${nom}\nTéléphone : ${tel}\nDate : ${cap(fr(new Date(state.date + "T12:00:00"), { weekday: "long", day: "numeric", month: "long" }))}\nHeure : ${hm(state.time)}\nPersonnes : ${state.pers}` + (note ? `\nRemarque : ${note}` : "");
+  const waMsg = (nom, tel, note) => `Bonjour, je souhaite réserver chez L’Atelier by Sam.\nNom : ${nom}\nTéléphone : ${tel}\nDate : ${cap(new Date(state.date + "T12:00:00").toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }))}\nHeure : ${new Intl.DateTimeFormat("fr-FR", { timeZone: TZ, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(new Date(state.time)).replace(":", "h")}\nPersonnes : ${state.pers}` + (note ? `\nRemarque : ${note}` : "");
   const openWA = text => window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
 
   function showDone(res, nom) {
     const confirmed = res.status === "confirmed";
     const link = SYSTEEM.menuUrl ? `${SYSTEEM.menuUrl.replace(/\/$/, "")}/${SYSTEEM.slug}?resa=${res.token}` : "";
-    done.innerHTML = `<h3>${confirmed ? "Réservation confirmée" : "Demande envoyée"}</h3>
-      <p>${confirmed ? "Merci" : "Merci"} ${nom.replace(/[<>&"]/g, "")} ! ${confirmed ? "Votre table est réservée" : "Nous confirmons votre réservation très vite"} :</p>
+    done.innerHTML = `<h3>${confirmed ? T("Réservation confirmée") : T("Demande envoyée")}</h3>
+      <p>${T("Merci")} ${nom.replace(/[<>&"]/g, "")} ! ${confirmed ? T("Votre table est réservée") : T("Nous confirmons votre réservation très vite")} :</p>
       <p class="done-when">${describe()}</p>
-      ${link ? `<p><a class="btn btn-solid" href="${link}">Suivre ou annuler ma réservation</a></p>` : ""}
-      <p><button type="button" class="linklike" id="resa-again">Faire une autre réservation</button></p>`;
+      ${link ? `<p><a class="btn btn-solid" href="${link}">${T("Suivre ou annuler ma réservation")}</a></p>` : ""}
+      <p><button type="button" class="linklike" id="resa-again">${T("Faire une autre réservation")}</button></p>`;
     form.hidden = true; done.hidden = false;
     done.scrollIntoView({ block: "center", behavior: "smooth" });
     document.getElementById("resa-again").addEventListener("click", () => { form.reset(); form.hidden = false; done.hidden = true; state.time = ""; loadSlots(); });
@@ -169,11 +170,11 @@ document.getElementById("y").textContent = new Date().getFullYear();
     e.preventDefault();
     showErr("");
     const f = new FormData(form), nom = (f.get("nom") || "").trim(), tel = (f.get("tel") || "").trim(), note = (f.get("note") || "").trim();
-    if (!state.time) { recap.textContent = "Choisissez une heure"; recap.classList.add("warn"); slotsEl.scrollIntoView({ block: "center", behavior: "smooth" }); return; }
+    if (!state.time) { recap.textContent = T("Choisissez une heure"); recap.classList.add("warn"); slotsEl.scrollIntoView({ block: "center", behavior: "smooth" }); return; }
     if (!nom) { form.nom.focus(); return; }
     if (LIVE && tel.replace(/\D/g, "").length < 9) { showErr(ERR.customer_required); form.tel.focus(); return; }
     if (!LIVE) { openWA(waMsg(nom, tel, note)); return; }
-    submitBtn.disabled = true; submitBtn.textContent = "Envoi…";
+    submitBtn.disabled = true; submitBtn.textContent = T("Envoi…");
     try {
       const res = await rpc("book_table", { p_slug: SYSTEEM.slug, p_booking: {
         client_id: (crypto.randomUUID ? crypto.randomUUID() : undefined), starts_at: state.time, party_size: +state.pers, name: nom, phone: tel.replace(/[^\d]/g, ""), note: note || undefined } });
@@ -181,7 +182,7 @@ document.getElementById("y").textContent = new Date().getFullYear();
     } catch (err) {
       showErr(errText(err));
       if (err.message === "slot_unavailable") loadSlots();
-    } finally { submitBtn.disabled = false; submitBtn.textContent = "Réserver"; }
+    } finally { submitBtn.disabled = false; submitBtn.textContent = T("Réserver"); }
   });
 
   drawPers(); drawDays(); loadSlots();
@@ -200,7 +201,7 @@ document.getElementById("y").textContent = new Date().getFullYear();
   const root = document.getElementById("acc");
   const PIC = ["menu-tea-chaudes.jpg", "menu-froides.jpg", "menu-smoothies.jpg", "menu-sales.jpg", "menu-sucres.jpg"]; // foto per categorie (volgorde van MENU)
   const POS = ["60% 61%", "64% 58%", "55% 58%", "40% 73%", "52% 67%"]; // uitsnede per foto: x y
-  const price = p => (p ? `<span class="price">${p} MAD</span>` : "");
+  const price = p => (p ? `<span class="price">${p} ${T("MAD")}</span>` : "");
   root.innerHTML = MENU.map((c, i) => {
     const items = c.items.map(it => {
       const sizes = it.sizes && it.sizes.length

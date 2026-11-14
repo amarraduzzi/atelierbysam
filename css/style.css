@@ -411,3 +411,20 @@ footer p{margin:0 auto;color:var(--sand)}
   .h-fig-r{float:right;margin-right:-290px}
   .h-fig-l{float:left;margin-left:-290px}
 }
+
+/* ===== Taalkeuze (FR / EN / عربي) ===== */
+.lang{display:flex;gap:.1rem;margin-inline-start:.6rem}
+.lang button{font:400 .78rem var(--sans);letter-spacing:.06em;background:none;border:1px solid transparent;border-radius:999px;padding:.22rem .6rem;color:var(--taupe);cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.lang button:hover{color:var(--olive)}
+.lang button[aria-pressed="true"]{border-color:var(--pistache);color:var(--olive);background:rgba(166,179,106,.14)}
+.lang button[lang="ar"]{font-family:"Tajawal",var(--sans);font-size:.9rem;letter-spacing:0}
+/* Arabisch: eigen lettertypes, geen schuine of gespatieerde letters (dat breekt het schrift) */
+html[lang="ar"]{--serif:"Amiri","Noto Naskh Arabic","Cormorant Garamond",Georgia,serif;--sans:"Tajawal","Noto Sans Arabic","Jost","Helvetica Neue",Arial,sans-serif}
+html[lang="ar"] *{font-style:normal!important;letter-spacing:0!important;text-transform:none!important}
+html[lang="ar"] body{line-height:1.9}
+html[lang="ar"] .h-body .drop::first-letter{float:none;font:inherit;color:inherit;padding:0}
+/* Arabisch: de horizontale fotoreeks blijft van links naar rechts lopen, de tekst erin gaat van rechts naar links */
+html[lang="ar"] .arcade .track{direction:ltr}
+html[lang="ar"] .arcade .pan{direction:rtl}
+html[lang="ar"] footer .small{direction:ltr}
+html[lang="ar"] .sign-svg,html[lang="ar"] .sign-t{direction:ltr}
