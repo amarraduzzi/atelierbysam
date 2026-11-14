@@ -209,12 +209,6 @@ footer{text-align:center;padding:4rem 1.2rem 3rem;background:var(--plum);color:v
 footer img{margin:0 auto 1rem;width:170px}
 footer img.spr{width:80px;margin-bottom:1.4rem}
 footer p{margin:0 auto;color:var(--sand)}
-footer p a{color:inherit;text-decoration:none}
-footer p a:hover{text-decoration:underline}
-.resa-info address{font-style:normal}
-.resa-info .addr{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
-.resa-info .addr:hover{border-bottom-color:var(--olive)}
-.resa-info .pills{margin-top:.8rem}
 .small{font-size:.85rem;margin-top:.4rem}
 
 /* Hero: décor desktop (rings, ombres, zellige, menu) */
@@ -327,7 +321,6 @@ footer p a:hover{text-decoration:underline}
 .sam{background:var(--cream);padding:7rem clamp(1.2rem,6vw,6rem)}
 .sam-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);gap:clamp(2.5rem,6vw,6rem);align-items:center}
 .sam-photo{margin:0;position:relative;aspect-ratio:3/4;border-radius:999px 999px 0 0;overflow:hidden;background:linear-gradient(160deg,var(--sand),#DCCDB9);box-shadow:0 30px 60px -35px rgba(58,45,36,.5)}
-.sam-photo::after{content:"Photo de Sam";position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--taupe);opacity:.8}
 .sam-photo img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover}
 .sam-quote{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.2;color:var(--espresso);margin-bottom:1.6rem;max-width:22ch}
 .sam-text p+p{margin-top:1rem}
