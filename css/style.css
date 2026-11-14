@@ -365,3 +365,39 @@ footer p{margin:0 auto;color:var(--sand)}
 
 /* Menu: opmerking onder de categorietitel */
 .acc-note{font-family:var(--serif);font-style:italic;color:var(--taupe);font-size:1rem;margin:.6rem 0 .2rem;max-width:none}
+
+/* ===== Notre histoire: tijdlijn, handtekening, beweging ===== */
+.tl{background:var(--mist);padding:4.5rem 1.4rem 5rem;text-align:center}
+.tl .eyebrow{margin-inline:auto}
+.tl-list{list-style:none;max-width:980px;margin:2.2rem auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;position:relative}
+.tl-list::before{content:"";position:absolute;left:12.5%;right:12.5%;top:21px;border-top:1px dashed var(--pistache)}
+.tl-list li{position:relative;padding:0 .4rem}
+.tl-dot{display:grid;place-items:center;width:44px;height:44px;margin:0 auto 1rem;position:relative;z-index:1}
+.tl-dot:empty::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--cream);border:2px solid var(--pistache)}
+.tl-dot .flag{width:44px;height:44px;filter:saturate(.9);box-shadow:0 6px 14px -6px rgba(58,45,36,.4);border-radius:50%}
+.tl-y{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.3rem;color:var(--plum)}
+.tl-list h3{font-size:1.7rem;margin:.1rem 0 .4rem}
+.tl-list p{margin:0 auto;max-width:22ch;font-size:.98rem;line-height:1.5;color:var(--taupe)}
+@media (max-width:800px){
+  .tl{text-align:left;padding:3.5rem 1.4rem 3.5rem}
+  .tl-list{grid-template-columns:1fr;gap:1.6rem;margin-left:.4rem}
+  .tl-list::before{left:21px;right:auto;top:20px;bottom:20px;border-top:0;border-left:1px dashed var(--pistache)}
+  .tl-list li{padding:0 0 0 4rem;text-align:left;min-height:44px}
+  .tl-dot{position:absolute;left:0;top:0;margin:0}
+  .tl-list p{margin:0;max-width:none}
+}
+.h-cont{padding-top:3.5rem}
+.h-cont h2:first-child{margin-top:0}
+.h-info{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);margin:-1rem auto 1.8rem!important}
+/* handtekening: de lijn tekent "Sam", daarna vult hij zich */
+.sign-svg{width:190px;height:80px;display:block;margin:0 auto;overflow:visible}
+.sign-t{font-family:var(--serif);font-style:italic;font-weight:400;font-size:74px;fill:var(--plum);stroke:var(--plum);stroke-width:1.1;stroke-linejoin:round}
+.js .sign .sign-t{fill:transparent;stroke-dasharray:420;stroke-dashoffset:420}
+.js .sign.in .sign-t{animation:sign-draw 2.4s .2s ease forwards,sign-fill .8s 2s ease forwards}
+@keyframes sign-draw{to{stroke-dashoffset:0}}
+@keyframes sign-fill{to{fill:var(--plum)}}
+/* zacht verschijnen bij het scrollen (alleen als JS draait en je geen "minder beweging" hebt gekozen) */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .9s ease var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.js .sam-photo.rv{transform:translateY(26px) scale(.97)}
+.js .sam-photo.rv.in{transform:none}
